@@ -34,6 +34,46 @@
                 <span class="item-label ellipsis">Meus Dados</span>
               </a>
             </li>
+            <!-- Item -->
+            <li class="list-style-none">
+              <a class="menu-item" href="#">
+                <span class="item-img"><i class="material-icons fs-70">room</i></span>
+                <span class="item-label ellipsis">Meus Dados</span>
+              </a>
+            </li>
+            <!-- Item -->
+            <li class="list-style-none">
+              <a class="menu-item" href="#">
+                <span class="item-img"><i class="material-icons fs-70">perm_phone_msg</i></span>
+                <span class="item-label ellipsis">Meus Dados</span>
+              </a>
+            </li>
+            <!-- Item -->
+            <li class="list-style-none">
+              <a class="menu-item" href="#">
+                <span class="item-img"><i class="material-icons fs-70">done_all</i></span>
+                <span class="item-label ellipsis">Meus Dados</span>
+              </a>
+            </li>
+
+            <!-- Content divisor -->
+            <div class="divisor"></div>
+            <!-- ****************** -->
+
+            <!-- Item -->
+            <li class="list-style-none">
+              <a class="menu-item" href="#">
+                <span class="item-img"><i class="material-icons fs-70">update</i></span>
+                <span class="item-label ellipsis">Meus Dados</span>
+              </a>
+            </li>
+            <!-- Item -->
+            <li class="list-style-none">
+              <a class="menu-item" href="#">
+                <span class="item-img"><i class="material-icons fs-70">compare_arrows</i></span>
+                <span class="item-label ellipsis">Meus Dados</span>
+              </a>
+            </li>
           </ul>
         </div>
       </div>
@@ -63,12 +103,14 @@
     <script>
       // Open hamburger menu when click on it
       $('#menu').click(function(){
-        $('.hamburger-container').animate({width:'toggle'},1000);
+        $('.hamburger-container').attr('style',{'margin-left':'0px','transition':'1s'});
+        // $('.hamburger-container').animate({width:'toggle'},1000);
       });
 
       // Close hamburger menu when click on it (dark side)
       $('#close-menu').click(function(){
-        $('.hamburger-container').animate({width:'toggle'},1000);
+        $('.hamburger-container').attr('style',{'margin-left':'0px','transition':'1s'});
+        // $('.hamburger-container').animate({width:'toggle'},1000);
       });
     </script>
 

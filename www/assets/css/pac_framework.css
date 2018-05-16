@@ -88,6 +88,10 @@
   font-family: general;
   background-color: #fff;
 }
+.items-container ul li
+{
+  margin-bottom: 50px;
+}
 .menu-item
 {
   display: flex;
@@ -168,6 +172,18 @@
 .fs-75{font-size: 75px;}
 /* ------ */
 
+/* ************************************************** */
+
+/* ********************** Divisor ******************** */
+.divisor
+{
+  width: 80%;
+  height: 1px;
+  display: block;
+  border-radius: 150px;
+  margin: 55px 0px;
+  background-color: #424242;
+}
 /* ************************************************** */
 
 /* ********************** List ******************** */
