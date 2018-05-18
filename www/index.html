@@ -2,7 +2,7 @@
 <html lang="pt-br">
   <head>
     <meta charset="utf-8">
-    <!-- <meta name="viewport" content="width=device-width, user-scalable=no"> -->
+    <meta name="viewport" content="width=device-width, user-scalable=no">
     <title>Portal Auto Center</title>
     <link rel="stylesheet" type="text/css" href="assets/css/pac_framework.css">
     <link rel="stylesheet" type="text/css" href="assets/css/normalize.css">
@@ -26,55 +26,86 @@
 
         <!-- Items container -->
         <div class="items-container">
-          <ul>
+          <ul class="list-style-none">
             <!-- Item -->
-            <li class="list-style-none">
-              <a class="menu-item" href="#">
-                <span class="item-img"><i class="material-icons fs-70">account_circle</i></span>
-                <span class="item-label ellipsis">Meus Dados</span>
-              </a>
-            </li>
-            <!-- Item -->
-            <li class="list-style-none">
-              <a class="menu-item" href="#">
-                <span class="item-img"><i class="material-icons fs-70">room</i></span>
-                <span class="item-label ellipsis">Meus Dados</span>
-              </a>
-            </li>
-            <!-- Item -->
-            <li class="list-style-none">
-              <a class="menu-item" href="#">
-                <span class="item-img"><i class="material-icons fs-70">perm_phone_msg</i></span>
-                <span class="item-label ellipsis">Meus Dados</span>
-              </a>
-            </li>
-            <!-- Item -->
-            <li class="list-style-none">
-              <a class="menu-item" href="#">
-                <span class="item-img"><i class="material-icons fs-70">done_all</i></span>
-                <span class="item-label ellipsis">Meus Dados</span>
-              </a>
-            </li>
-
-            <!-- Content divisor -->
-            <div class="divisor"></div>
-            <!-- ****************** -->
+            <a href="#">
+              <li class="item">
+                <span class="inline-block">
+                  <i class="material-icons">account_circle</i>
+                </span>
+                <span class="inline-block">
+                  Meus Perfil
+                </span>
+              </li>
+            </a>
 
             <!-- Item -->
-            <li class="list-style-none">
-              <a class="menu-item" href="#">
-                <span class="item-img"><i class="material-icons fs-70">update</i></span>
-                <span class="item-label ellipsis">Meus Dados</span>
-              </a>
-            </li>
+            <a href="#">
+              <li class="item">
+                <span class="inline-block">
+                  <i class="material-icons">playlist_add_check</i>
+                </span>
+                <span class="inline-block">
+                  Servições
+                </span>
+              </li>
+            </a>
+
             <!-- Item -->
-            <li class="list-style-none">
-              <a class="menu-item" href="#">
-                <span class="item-img"><i class="material-icons fs-70">compare_arrows</i></span>
-                <span class="item-label ellipsis">Meus Dados</span>
-              </a>
-            </li>
+            <a href="#">
+              <li class="item">
+                <span class="inline-block">
+                  <i class="material-icons">local_gas_station</i>
+                </span>
+                <span class="inline-block">
+                  Combustível
+                </span>
+              </li>
+            </a>
+
+            <!-- Item -->
+            <a href="#">
+              <li class="item">
+                <span class="inline-block">
+                  <i class="material-icons">find_replace</i>
+                </span>
+                <span class="inline-block">
+                  Revisões
+                </span>
+              </li>
+            </a>
           </ul>
+
+          <div class="divisor"></div>
+          <!-- Content divisor -->
+
+          <ul class="list-style-none">
+
+            <!-- Item -->
+            <a href="#">
+              <li class="item">
+                <span class="inline-block">
+                  <i class="material-icons">phone_in_talk</i>
+                </span>
+                <span class="inline-block">
+                  Socorro Já
+                </span>
+              </li>
+            </a>
+
+            <!-- Item -->
+            <a href="#">
+              <li class="item">
+                <span class="inline-block">
+                  <i class="material-icons">notifications_active</i>
+                </span>
+                <span class="inline-block">
+                  Alertas
+                </span>
+              </li>
+            </a>
+          </ul>
+
         </div>
       </div>
 
@@ -90,12 +121,12 @@
       <!-- Hamburger menu icon -->
       <a id="menu" href="#">
         <div class="menu">
-          <i class="material-icons fs-70">menu</i>
+          <i class="material-icons block">menu</i>
         </div>
       </a>
       <!-- Header title -->
       <div class="header-title">
-        Portal Auto Center
+        <span class="block">Portal Auto Center</span>
       </div>
     </nav>
     <!-- *********************** -->
@@ -103,14 +134,12 @@
     <script>
       // Open hamburger menu when click on it
       $('#menu').click(function(){
-        $('.hamburger-container').attr('style',{'margin-left':'0px','transition':'1s'});
-        // $('.hamburger-container').animate({width:'toggle'},1000);
+        $('.hamburger-container').animate({width:'toggle'},1000);
       });
 
       // Close hamburger menu when click on it (dark side)
       $('#close-menu').click(function(){
-        $('.hamburger-container').attr('style',{'margin-left':'0px','transition':'1s'});
-        // $('.hamburger-container').animate({width:'toggle'},1000);
+        $('.hamburger-container').animate({width:'toggle'},1000);
       });
     </script>
 
