@@ -10,6 +10,7 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/api.js"></script>
     <script src="js/utils.js"></script>
+    <script src="js/jssor.slider-27.1.0.min.js"></script>
   </head>
   <body>
     
@@ -20,7 +21,10 @@
     <div class="blank-space"></div>
 
      <!-- Main content -->
-    <div class="main">    
+    <div class="main">  
+
+      <!-- Carrossel premium partner -->
+      <div class="corrossel-premium"></div>  
       
       <!-- Product container -->
       <a class="block product-container" href="#">
@@ -45,54 +49,6 @@
       </a>
       <!-- _________________________________________________ -->
 
-      <!-- Product container -->
-      <a class="block product-container" href="#">
-        <!-- Product's image -->
-        <div class="product-img" style="background-image: url(https://www.samsung.com/us/experience/smart-tv/assets/images/module1/module1_panel1.jpg);"></div>
-
-        <!-- Product's description -->
-        <div class="product-desc">
-          <!-- Name -->
-          <span class="block product-label bold">Samsung Smart Tv 50 polegadas</span>
-
-          <!-- Price -->
-          <span class="block product-label">
-            Preço: <span class="green-light-txt bold">R$ 210,00</span>
-          </span>
-
-          <!-- Manufacturer -->
-          <span class="block product-label">
-            Fabricante: BMW
-          </span>
-        </div>
-      </a>
-      <!-- _________________________________________________ -->
-
-      <!-- Product container -->
-      <a class="block product-container" href="#">
-        <!-- Product's image -->
-        <div class="product-img" style="background-image: url(https://images.unsplash.com/photo-1441148345475-03a2e82f9719?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=fbf40a1199089ae74b75010d4ed14724&dpr=1&auto=format&fit=crop&w=1000&q=80&cs=tinysrgb);"></div>
-
-        <!-- Product's description -->
-        <div class="product-desc">
-          <!-- Name -->
-          <span class="block product-label bold">Samsung Smart Tv 50 polegadas</span>
-
-          <!-- Price -->
-          <span class="block product-label">
-            Preço: <span class="green-light-txt bold">R$ 210,00</span>
-          </span>
-
-          <!-- Manufacturer -->
-          <span class="block product-label">
-            Fabricante: BMW
-          </span>
-        </div>
-      </a>
-      <!-- _________________________________________________ -->
-
-
-
     </div>
 
    <!--  <div class="search-field">
@@ -103,6 +59,14 @@
    <!--  <a class="search-btn" href="#">
       <i class="material-icons">search</i>
     </a> -->
+
+    <script>
+      $(function(){
+        $('.corrossel-premium').load('carrossel.html',function(){
+            jssor_1_slider_init();
+        });
+      });
+    </script>
 
   </body>
 </html>
