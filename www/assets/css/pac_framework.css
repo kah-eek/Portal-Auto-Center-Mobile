@@ -206,6 +206,24 @@
 
 /* ************************************************** */
 
+/* ********************** Loading ******************** */
+.loading
+{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 5px solid #00C853;
+  border-top: 5px solid #2A2E37;
+  animation: spin 1s linear infinite;
+  /*background-color: green;*/
+}
+@keyframes spin
+{
+  0%{transform: rotate(0deg);}
+  100%{transform: rotate(360deg);}
+}
+/* ************************************************** */
+
 /* ********************** Divisor ******************** */
 .divisor
 {
