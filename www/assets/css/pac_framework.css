@@ -214,7 +214,7 @@
   display: block;
   border-radius: 150px;
   margin: 10px auto;
-  background-color: #424242;
+  background-color: #BDBDBD;
 }
 /* ************************************************** */
 
@@ -265,6 +265,23 @@ input::placeholder
   font-family: general;
 }
 
+/*type[radio]*/
+
+.input-radio
+{
+}
+/* ************************************************** */
+
+/* ********************** Select  ******************** */
+.combo-box
+{
+  font-family: general;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  outline: none;
+  border-bottom-color: #00C853;
+}
 /* ************************************************** */
 
 /* ********************** Colors ******************** */
@@ -276,6 +293,7 @@ input::placeholder
 /* Font */
 .green-light-txt{color: #00C853;}
 .white-txt{color: #fff;}
+.gray-txt{color: #757575;}
 /* ------- */
 /* ************************************************** */
 
