@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <title>Portal Auto Center</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/pac_framework.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/signup.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/utils.js"></script>
+  </head>
+  <body>
+    
+    <!-- Page's header -->
+    <nav class="nav-header white-txt">
+      <!-- Arrow back icon -->
+      <a id="menu" href="index.html">
+        <div class="menu">
+          <i class="material-icons block">arrow_back</i>
+        </div>
+      </a>
+      <!-- Header title -->
+      <div class="header-title">
+        <span class="block">Cadastre-se</span>
+      </div>
+    </nav>
+    <!-- *********************** -->
+
+    <form enctype="multipart/form-data">
+      
+      <!-- Main content -->
+      <div class="main">
+
+        <!-- User's profile picture -->
+        <label class="block choose-pic" for="userPic">
+          <i class="material-icons">
+            account_circle
+          </i>
+        </label>  
+        <input id="userPic" type="file" hidden name="btnUserPic">
+
+        <!-- Client's username -->
+        <input class="input-text" type="text" required name="txtUsuario" placeholder="Usuário">
+
+        <!-- Client's password -->
+        <input class="input-text" type="password" required name="txtSenha" placeholder="Senha">
+
+        <!-- Content divisor -->
+        <div class="divisor"></div>
+        
+        <!-- Client's name -->
+        <input class="input-text" type="text" required name="txtNome" placeholder="Nome completo">
+
+        <!-- Client's birthday -->
+        <input class="input-text" type="text" required name="txtDtNasc" placeholder="Data de nascimento">
+
+        <!-- Client's cpf -->
+        <input class="input-text" type="text" required name="txtCpf" placeholder="CPF">
+
+        <!-- Client's email -->
+        <input class="input-text" type="text" required name="txtEmail" placeholder="E-mail">
+
+        <!-- Client's celular -->
+        <input class="input-text" type="text" required name="txtCcelular" placeholder="Celular">
+
+        <!-- Client's telefone -->
+        <input class="input-text" type="text" required name="txtTelefone" placeholder="Telefone">
+
+
+        <span class="sex-label">Sexo</span>
+        <!-- Client's sex container -->
+        <div class="client-sex-conatiner">
+          <div class="sex-rbt">
+            <input class="input-radio" type="radio" name="rbtSexo" value="F">Feminino
+          </div>
+          <div class="sex-rbt">
+            <input class="input-radio" type="radio" name="rbtSexo" value="M">Masculino        
+          </div>
+        </div>
+
+        <!-- Content divisor -->
+        <div class="divisor"></div>
+
+        <!-- Client's zip code -->
+        <input class="input-text" type="text" required name="txtCep" placeholder="CEP">
+
+        <!-- Client's State -->
+        <select class="combo-box" required name="cbxEstado">
+          <option selected disabled value="">Estado</span></option>
+          <option value="1">São Paulo</option>
+        </select>
+
+        <!-- Client's city -->
+        <input class="input-text" type="text" required name="txtCidade" placeholder="Cidade">
+
+        <!-- Client's neighborhood -->
+        <input class="input-text" type="text" required name="txtBairro" placeholder="Bairro">
+
+        <!-- Client's complement -->
+        <input class="input-text" type="text" required name="txtComplemento" placeholder="Complemento">
+
+        <!-- Client's address street -->
+        <input class="input-text" type="text" required name="txtLogradouro" placeholder="Logradouro">
+
+        <!-- Client's address number -->
+        <input class="input-text" type="text" required name="txtNumeroEnd" placeholder="Número">
+
+      </div>
+
+      <!-- Navigation bar (header) -->
+      <nav class="snackbar green-light uppercase">
+        <a href="#">
+          Cadastrar
+        </a>
+      </nav>
+      <!-- *********************** -->
+
+    </form>
+  </body>
+</html>
