@@ -14,7 +14,7 @@
   <body>
 
     <!-- Page's header -->
-    <nav class="nav-header white-txt">
+    <nav class="nav-header">
       <!-- Arrow back icon -->
       <a id="menu" href="home.html">
         <div class="menu">
@@ -38,21 +38,21 @@
       <!-- https://4.bp.blogspot.com/-FJJ1ID5F9pI/Vuu5HsKaS7I/AAAAAAAACYw/MeGXfeSJH3oVmPP8pvVjh1FsmLqmY-zhw/s1600/NYV2t.gif -->
 
         <!-- Product's image -->
-        <div class="product-img" style="background-image:url(http://blog.sigmacar.com.br/wp-content/uploads/2016/05/ituran.png);background-attachment: scroll;">
+        <div class="product-img" style="background-image:url(http://blog.sigmacar.com.br/wp-content/uploads/2016/05/ituran.png);background-attachment: fixed;">
 
           <!-- Product's name -->
-          <div class="product-name uppercase">
+          <div id="product-name" class="product-name uppercase">
             <span class="block white-txt">Pneu</span>
           </div>
 
           <!-- Add to shopping cart button -->
-          <div class="add-to-cart">
+          <div id="cart-button" class="add-to-cart">
             <i class="material-icons white-txt">shopping_cart</i>
           </div>
         </div>
 
         <!-- Product's details -->
-        <div class="product-details">
+        <div id="product-details" class="product-details">
 
           <!-- Product's price -->
           <div class="row">
@@ -185,13 +185,47 @@
 
     <script>
       $(window).scroll(function(){
-        var scroll = $(this).scrollTop();
+        
+        var scrollPos = $(this).scrollTop();
 
-        if (true) {
+        if (scrollPos > 385) 
+        {
+          $('#product-name').css(
+            {
+              position:'fixed',
+              padding:'0px 15%',
+              backgroundColor:'rgba(0,200,83,1)',
+              transition:'0.5s',
+              top:'0px'
+            }
+          );
 
+          // $('body').css(
+          //   {
+          //     overflow:'hidden'
+          //   }
+          // );
+
+          $('#product-details').css(
+            {
+              overflow:'visible'
+            }
+          );
+          
+          $('#cart-button').css({display:'none'});
         }
-        console.clear();
-        console.log(scroll);
+        else 
+        {
+          $('#product-name').css(
+            {
+              position:'',
+              backgroundColor:'',
+              padding:'0px 25%',
+            }
+          );
+
+          $('#cart-button').css({display:'flex'});
+        }
       });
     </script>
 
