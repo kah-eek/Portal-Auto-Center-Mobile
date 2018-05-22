@@ -18,7 +18,7 @@
       <!-- Arrow back icon -->
       <a id="menu" href="home.html">
         <div class="menu">
-          <i class="material-icons block black-txt">arrow_back</i>
+          <i id="return-button" class="material-icons block black-txt">arrow_back</i>
         </div>
       </a>
       <!-- Header title -->
@@ -184,46 +184,59 @@
     <!-- *********************** -->
 
     <script>
+
+      // Listener to page's scroll 
       $(window).scroll(function(){
         
+        // Get scrolls position (top) 
         var scrollPos = $(this).scrollTop();
 
+        // Set style on elements
         if (scrollPos > 385) 
         {
+          // Product's name bar
           $('#product-name').css(
             {
               position:'fixed',
               padding:'0px 15%',
-              backgroundColor:'rgba(0,200,83,1)',
+              backgroundColor:'#2A2E37',
               transition:'0.5s',
-              top:'0px'
+              top:'0px',
+              fontSize:'1.3rem'
             }
           );
 
-          // $('body').css(
-          //   {
-          //     overflow:'hidden'
-          //   }
-          // );
-
-          $('#product-details').css(
+          // Return button (arrow back)
+          $('#return-button').css(
             {
-              overflow:'visible'
+              color:'#fff',
+              transition:'2s'
             }
           );
           
+          // Shopping cart button
           $('#cart-button').css({display:'none'});
         }
-        else 
+        else // Remove style on elements
         {
+          // Reset product's name bar style
           $('#product-name').css(
             {
               position:'',
               backgroundColor:'',
               padding:'0px 25%',
+              fontSize:'1.8rem'
             }
           );
 
+          // Reset return button (arrow back) style
+          $('#return-button').css(
+            {
+              color:'#000'
+            }
+          );
+
+          // Reset shopping cart button style
           $('#cart-button').css({display:'flex'});
         }
       });
