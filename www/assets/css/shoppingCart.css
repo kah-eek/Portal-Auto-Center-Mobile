@@ -1,0 +1,147 @@
+/* CSS */
+
+body
+{
+  background-color: rgba(204,204,204,0.9);
+}
+
+/* Snackbar */
+.snackbar
+{
+  font-family: general;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+/*Main content*/
+.main
+{
+  padding-top: 10%;
+  padding-bottom: 25%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+  height: 100%;
+  /*background-color: gold;*/
+}
+
+/*Cart item cotainer*/
+.cart-item
+{
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 180px;
+  box-shadow: 5px 2px 5 px rgba(0,0,0,0.5);
+  background-color: #fff;
+}
+
+/*Product's information container*/
+.product-info
+{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 85%;
+  /*background-color: green;*/
+}
+
+/*Product's image*/
+.product-img
+{
+  width: 25%;
+  height: 100%;
+  /*background-color: yellow;*/
+}
+
+/*Information's data*/
+.info-data
+{
+  display: flex;
+  flex-direction: row;
+  width: 75%;
+  height: 100%;
+  /*background-color: orange;*/
+}
+
+/*Product's informations*/
+.informations
+{
+  text-shadow: 0px 0px 1px rgba(0,0,0,0.4);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 85%;
+  height: 100%;
+  background-color: #fff;
+  /*background-image: linear-gradient(to right, #fff 25%, rgba(0,0,0,0.5) 100%);*/
+}
+.row
+{
+  display: flex;
+  font-family: general;
+  padding: 0px 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 25px;
+  /*background-color: aqua;*/
+}
+
+/*Delete button container*/
+.delete-container
+{
+  text-shadow: 0px 0px 1px #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15%;
+  height: 100%;
+  font-weight: 900;
+  background-color: #D50000;
+  /*background-image: linear-gradient(to right, rgba(0,0,0,0.5) 0%, #D50000 100%);*/
+}
+
+/*Add and remove item button container*/
+.add-remove-item
+{
+  display: flex;
+  align-items: center;
+  padding: 0px 20%;
+  box-sizing: border-box;
+  justify-content: space-between;
+  width: 100%;
+  height: 15%;
+  background-color: rgba(0,0,0,0.85);
+}
+
+
+/*Total pay container*/
+.total-pay
+{
+  display: flex;
+  align-items: center;
+  font-family: general;
+  justify-content: center;
+  width: 100%;
+  height: 30px;
+  letter-spacing: 2px;
+  box-shadow: 0px 1px 10px #000;
+  bottom: 0px;
+  /*bottom: 40px;*/
+  position: fixed;
+  background-color: #000;
+}
+
+/*Blank space*/
+.blank-space
+{
+  width: 100%;
+  height: 50px;
+}
+
