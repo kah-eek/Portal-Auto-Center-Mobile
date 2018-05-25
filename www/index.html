@@ -22,15 +22,15 @@
       
       <div class="authentication-fields">
         <!-- Unername -->
-        <input class="input-text" type="text" name="txtUsername" placeholder="Usuário">
+        <input id="txtUsername" class="input-text" type="text" name="txtUsername" placeholder="Usuário">
         
         <!-- Password -->
-        <input class="input-text" type="password" name="txtUsername" placeholder="Senha">
+        <input id="txtPassword" class="input-text" type="password" name="txtPassword" placeholder="Senha">
       </div>
       
       <!-- Login button -->
-      <a class="button dark-blue white-txt uppercase" href="home.html">
-        <span class="block">Entrar</span>
+      <a class="button dark-blue white-txt uppercase" href="#">
+        <span id="login" class="block">Entrar</span>
       </a>
 
       <!-- Reset password field -->
@@ -46,6 +46,48 @@
       inscrever-se
     </a>
     <!-- *********************** -->
+
+    <script src="js/model/Client.js"></script>
+    <script src="js/model/User.js"></script>
+    <script src="js/DAO/ClientDAO.js"></script>
+
+
+
+    <script>
+      
+      // Try to Login
+      $('#login').click(function(){
+
+        var client = new Client();
+
+        // Create a instance of User containing authentication data informed
+        var user = new User
+        (
+          $('#txtUsername').val(),          
+          $('#txtPassword').val()          
+        );
+
+        // Verify if exists the client
+        client.existsClient(
+          user, // Client's authentication data
+          function(resp) // Success callback
+          { 
+            if(resp.status)
+            {
+              localStorage.setItem('client',JSON.stringify(resp));
+            }
+          console.log(resp);
+          },
+          function(error) // Fail callback
+          {
+            console.log(error);
+          }
+        );
+
+      });
+
+
+    </script>
 
   </body>
 </html>
