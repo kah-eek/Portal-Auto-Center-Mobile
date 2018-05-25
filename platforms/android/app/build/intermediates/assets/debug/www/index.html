@@ -13,10 +13,13 @@
     <script src="js/utils.js"></script>
   </head>
   <body>
-    
+
     <!-- Page's header -->
     <div class="no-nav-header"></div>
     <!-- *********************** -->
+
+    <!-- Toast component -->
+    <div class="toast"></div>
 
     <!-- Main content -->
     <div class="main">
@@ -48,6 +51,8 @@
     </a>
     <!-- *********************** -->
 
+    <!-- Component -->
+    <script src="js/component.js"></script>
     <!-- Models -->
     <script src="js/model/Client.js"></script>
     <script src="js/model/User.js"></script>
@@ -82,7 +87,8 @@
             }
             else
             {
-              Dialog.alert('title', 'message', function(){console.log('callback')}, 'button');
+              // Show a toast with login incorrect message
+              toast('Usuário ou senha inválido !',4000);
             }
 
           console.log(resp);

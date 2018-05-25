@@ -81,21 +81,30 @@
           user, // Client's authentication data
           function(resp) // Success callback
           { 
+            // Verify if client was returned
             if(resp.status)
             {
-              localStorage.setItem('client',JSON.stringify(resp));
+              // Keep client's data in local storage
+              localStorage.setItem('client',JSON.stringify(resp.client));
+
+              // Set auto login on application
+              localStorage.setItem('autologin','true');
+
+              // Forward the user to home page
+              location.replace('home.html');
             }
             else
             {
               // Show a toast with login incorrect message
               toast('Usuário ou senha inválido !',4000);
             }
-
-          console.log(resp);
           },
           function(error) // Fail callback
           {
+            // Debugge
             console.log(error);
+            // Show a toast with login incorrect message
+            toast('Falha ao tentar logar !',4000);
           }
         );
 
