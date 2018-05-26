@@ -11,6 +11,17 @@ class Product
 		new ProductDAO().getProductsMinInfo(callbackSuccess,callbackFail);
 	}
 
+	/**
+	* Get product's basic informations
+	* @param  productId Product id
+	* @param  callbackSuccess(data) Callback executed in success on get data 
+	* @param  [callbackFail(error)] Callback executed in fail on get data 
+	*/
+	getProductBasicInfoById(productId, callbackSuccess,callbackFail)
+	{
+		new ProductDAO().getProductBasicInfoById(productId, callbackSuccess,callbackFail);
+	}
+
 
 
 

@@ -38,7 +38,7 @@
       <!-- https://4.bp.blogspot.com/-FJJ1ID5F9pI/Vuu5HsKaS7I/AAAAAAAACYw/MeGXfeSJH3oVmPP8pvVjh1FsmLqmY-zhw/s1600/NYV2t.gif -->
 
         <!-- Product's image -->
-        <div class="product-img" style="background-image:url(http://blog.sigmacar.com.br/wp-content/uploads/2016/05/ituran.png);background-attachment: fixed;">
+        <div id="product-img" class="product-img">
 
           <!-- Product's name -->
           <div id="product-name" class="product-name uppercase">
@@ -60,7 +60,7 @@
               <i class="material-icons fs-35" title="Garantia">attach_money</i>
             </div>
             <div class="info-text">
-              <span class="block">R$ 300,00</span>
+              <span id="price" class="block"></span>
             </div>
           </div>
 
@@ -73,7 +73,7 @@
               <i class="material-icons fs-30">build</i>
             </div>
             <div class="info-text">
-              <span class="block">12 Meses</span>
+              <span id="warranty" class="block"></span>
             </div>
           </div>
 
@@ -86,7 +86,7 @@
               <i class="material-icons fs-35">playlist_add_check</i>
             </div>
             <div class="info-text">
-              <span class="block">41A-52FD</span>
+              <span id="model" class="block"></span>
             </div>
           </div>
 
@@ -99,7 +99,7 @@
               <i class="material-icons fs-35" title="Categoria">list</i>
             </div>
             <div class="info-text">
-              <span class="block">Acessórios</span>
+              <span id="category" class="block"></span>
             </div>
           </div>
 
@@ -112,7 +112,7 @@
               <i class="material-icons fs-30" title="Fabricante">business</i>
             </div>
             <div class="info-text">
-              <span class="block">Good Air</span>
+              <span id="manufacturer" class="block"></span>
             </div>
           </div>
 
@@ -123,7 +123,7 @@
           <div class="long-text-container">
 
             <!-- Product's description -->
-            <div class="long-text-row">
+            <div id="long-text-desc" class="long-text-row">
               <!-- Icon's column -->
               <div class="icon-column">
                 <i class="material-icons fs-35" title="Descrição">description</i>
@@ -131,15 +131,7 @@
 
               <!-- Text's column -->
               <div class="text-column">
-                <span class="block">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing
-                  elit, sed do eiusmod tempor incididunt ut
-                  labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                   nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                   nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                  deserunt mollit anim id est laborum.
-                </span>
+                <span id="description" class="block"></span>
               </div>
 
             </div>
@@ -148,7 +140,7 @@
             <div class="divisor"></div>
 
             <!-- Product's observation -->
-            <div class="long-text-row">
+            <div id="long-text-obs" class="long-text-row">
               <!-- Icon's column -->
               <div class="icon-column">
                 <i class="material-icons fs-35" title="Observações">note</i>
@@ -156,15 +148,7 @@
 
               <!-- Text's column -->
               <div class="text-column">
-                <span class="block">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing
-                  elit, sed do eiusmod tempor incididunt ut
-                  labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                   nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                   nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                  deserunt mollit anim id est laborum.
-                </span>
+                <span id="observation" class="block"></span>
               </div>
 
             </div>
@@ -182,6 +166,12 @@
       </a>
     </nav>
     <!-- *********************** -->
+
+
+    <!-- DAOs -->
+    <script src="js/dao/ProductDAO.js"></script>
+    <!-- Models -->
+    <script src="js/model/Product.js"></script>
 
     <script>
 
@@ -240,6 +230,53 @@
           $('#cart-button').css({display:'flex'});
         }
       });
+
+
+      var product = new Product().getProductBasicInfoById(
+        getVariable('id'),
+        function(product)
+        {
+          console.log(product);
+
+          /*
+            Fil some fields with product's data
+          */
+          // Image
+          $('#product-img').css(
+            {
+              'backgroundImage':`url(${picturePath['product']+getPictureName('produto',product.imagem)})`,
+              'backgroundAttachment': 'fixed'
+            }
+          );
+
+          // Price
+          $('#price').text(product.preco);
+
+          // Warranty
+          $('#warranty').text(product.garantia);
+
+          // Model
+          $('#model').text(product.modelo);
+
+          // Category
+          $('#category').text(product.categoria);
+
+          // Manufacturer
+          $('#manufacturer').text(product.fabricante);
+
+          // Description
+          product.descricao === '' || product.descricao == null ?  $('#long-text-desc').hide() : $('#description').text(product.descricao);
+
+          // Observation
+          product.observacao === '' || product.observacao == null ?  $('#long-text-obs').hide() : $('#observation').text(product.observacao);
+
+        },
+        function()
+        {
+
+        }
+      );
+
     </script>
 
   </body>
