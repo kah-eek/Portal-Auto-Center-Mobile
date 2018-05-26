@@ -1,3 +1,41 @@
+$(function(){
+
+	// Load navigator header on page
+	$('.header').load('nav_header.html',function(){
+
+	  // Get client from local storage 
+      var client = JSON.parse(localStorage.getItem('client'));
+
+      /*
+        Set data into fields
+      */
+      // Profile picture
+      $('#profile-picture').attr('src',client.foto_perfil);
+
+      // Name
+      $('#name').text(client.nome);
+
+      // Email
+      $('#email').text(client.email);
+      // ***********************************************><
+
+	  // Open hamburger menu when click on it
+      $('#menu').click(function(){
+        $('.hamburger-container').animate({left:'100%'},500);
+      });
+
+      // Close hamburger menu when click on it (dark side)
+      $('#close-menu').click(function(){
+        $('.hamburger-container').animate({left:'-100%'},800);
+      });
+	});
+  // *********************************************
+  
+  // Load header no navigation on page
+  $('.no-nav-header').load('only_header.html');
+	// *********************************************
+});
+
 /**
 * Show a toast message on screen
 * @param message Message to show to user
