@@ -19,6 +19,12 @@ $(function(){
       $('#email').text(client.email);
       // ***********************************************><
 
+      // Pass client's id to another page
+      $('#update-profile').click(function(){
+      	location.assign(`updateProfile.html?id=${client.id_cliente}`);
+      });
+      // ***********************************************><
+
 	  // Open hamburger menu when click on it
       $('#menu').click(function(){
         $('.hamburger-container').animate({left:'100%'},500);
