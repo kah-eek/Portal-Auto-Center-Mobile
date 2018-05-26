@@ -13,6 +13,9 @@
   </head>
   <body>
 
+    <!-- Toast dialog -->
+    <div class="toast"></div>
+
     <!-- Page's header -->
     <nav class="nav-header">
       <!-- Arrow back icon -->
@@ -167,11 +170,14 @@
     </nav>
     <!-- *********************** -->
 
-
+    <!-- Component -->
+    <script src="js/component.js"></script>
     <!-- DAOs -->
     <script src="js/dao/ProductDAO.js"></script>
     <!-- Models -->
     <script src="js/model/Product.js"></script>
+    <script src="js/model/Order.js"></script>
+    <script src="js/model/ShoppingCart.js"></script>
 
     <script>
 
@@ -231,13 +237,12 @@
         }
       });
 
-
+      // Get product's information and fill field with it 
       var product = new Product().getProductBasicInfoById(
         getVariable('id'),
         function(product)
         {
           console.log(product);
-
           /*
             Fil some fields with product's data
           */
@@ -285,7 +290,25 @@
           {
             // Fill observation field with data
             $('#observation').text(product.observacao);
-          }         
+          }  
+
+
+          // Listener on shopping cart button
+          $('#cart-button').click(function(){
+
+            var client = JSON.parse(localStorage.getItem('client'));
+            
+            var order = new Order
+            (
+              product.id_produto, 
+              client.id_cliente, 
+              3
+            );
+
+            ShoppingCart.addOrderToCart(order);
+
+            toast('Produto adicionado ao carrinho',4000);
+          });       
 
 
         },

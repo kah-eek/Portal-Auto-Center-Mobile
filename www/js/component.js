@@ -63,7 +63,7 @@ function toast(message,duration)
 			$toast.css({animation:'fadeout 1s linear 1'})
 			setTimeout(function(){
 				$toast.css({display:'none'});
-			},1000);
+			},900);
 		}
 		,duration
 	);

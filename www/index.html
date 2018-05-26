@@ -57,6 +57,7 @@
     <script src="js/model/Client.js"></script>
     <script src="js/model/User.js"></script>
     <script src="js/model/Dialog.js"></script>
+    <script src="js/model/ShoppingCart.js"></script>
     <!-- DAOs -->
     <script src="js/dao/ClientDAO.js"></script>
 
@@ -92,6 +93,9 @@
 
               // Set auto login on application
               localStorage.setItem('autologin','true');
+
+              // Create shooping cart
+              new ShoppingCart();
 
               // Forward the user to home page
               location.replace('home.html');
