@@ -32,7 +32,7 @@
     <div class="blank-space"></div>
 
     <!-- Main content -->
-    <div class="main">
+    <div id="main" class="main">
 
       <!-- Item -->
       <!-- Cart item cotainer -->
@@ -246,9 +246,26 @@
     </a>
     <!-- *********************** -->
 
+    <!-- Models -->
+    <script src="js/model/ShoppingCart.js"></script>
+    <!-- DAOs -->
 
     <script>
-        
+
+      // Get the shopping cart
+      var shoppingCart = ShoppingCart.getShoppingCart();
+
+      if(shoppingCart.length > 0)
+      {
+
+        for(var i = 0; i < shoppingCart.length; i++)
+        {
+        console.log(ShoppingCart.getProductsCount(shoppingCart[2].order.productId));
+          
+        }
+      }
+      
+      // Show total to pay
       setTimeout(function()
       {
         

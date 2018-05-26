@@ -242,7 +242,6 @@
         getVariable('id'),
         function(product)
         {
-          console.log(product);
           /*
             Fil some fields with product's data
           */
@@ -296,17 +295,21 @@
           // Listener on shopping cart button
           $('#cart-button').click(function(){
 
+            // Get client logged on application
             var client = JSON.parse(localStorage.getItem('client'));
             
+            // Create a new order to add to shopping card
             var order = new Order
             (
-              product.id_produto, 
-              client.id_cliente, 
-              3
+              product.id_produto, // product's id
+              client.id_cliente, // client's id
+              3 // order situation (waiting payment)
             );
 
+            // Add order to shopping cart
             ShoppingCart.addOrderToCart(order);
 
+            // Show a toast about item inserted in shopping cart
             toast('Produto adicionado ao carrinho',4000);
           });       
 

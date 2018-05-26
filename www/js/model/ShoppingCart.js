@@ -7,7 +7,32 @@ class ShoppingCart
 	constructor()
 	{
 		// Create shooping cart in local storage
-		localStorage.setItem('shooping_cart',JSON.stringify([]));
+		localStorage.setItem('shopping_cart',JSON.stringify([]));
+	}
+
+	static getProductsCount(productId)
+	{
+		shoppingCart = this.getShoppingCart();
+		var amount = 0;
+
+		for(var i = 0; i < shoppingCart.length; i++)
+		{
+			if (shoppingCart[i].order.productId == productId)
+			{
+				amount += 1;
+			}
+		}
+
+		return amount;
+	}
+
+	/**
+	* Get the shopping cart object
+	* @return JSON Shopping cart object
+	*/
+	static getShoppingCart()
+	{
+		return JSON.parse(localStorage.getItem('shopping_cart'));
 	}
 
 	/**
@@ -16,11 +41,11 @@ class ShoppingCart
 	*/
 	static addOrderToCart(orderObj)
 	{
-		var shoopingCart = JSON.parse(localStorage.getItem('shooping_cart'));
+		var shoppingCart = JSON.parse(localStorage.getItem('shopping_cart'));
 
-        shoopingCart.push({'order':orderObj});
+        shoppingCart.push({'order':orderObj});
 
-        localStorage.setItem('shooping_cart',JSON.stringify(shoopingCart));
+        localStorage.setItem('shopping_cart',JSON.stringify(shoppingCart));
 	}
 
 	/**
