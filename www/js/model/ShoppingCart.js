@@ -10,6 +10,11 @@ class ShoppingCart
 		localStorage.setItem('shopping_cart',JSON.stringify([]));
 	}
 
+	/**
+	* Get amount that one products exists in shopping cart
+	* @param productId Product's id
+	* @return int Amount the product exists in shopping cart
+	*/
 	static getProductsCount(productId)
 	{
 		shoppingCart = this.getShoppingCart();
@@ -24,6 +29,35 @@ class ShoppingCart
 		}
 
 		return amount;
+	}
+
+	/**
+	* Get products' id existing in shopping cart
+	* @return array List containing products's id existing in shopping cart
+	* @return empty array Fail in attempt to get products's id list existing in shopping cart
+	*/
+	static getProductsId()
+	{
+		shoppingCart = this.getShoppingCart();
+		var list = [];
+
+		if (shoppingCart.length > 0)
+		{
+			var oldProcustId;
+
+			for(var i = 0; i < shoppingCart.length; i++)
+			{
+				if (shoppingCart[i].order.productId != oldProcustId)
+				{
+					list.push(shoppingCart[i].order.productId);
+					oldProcustId = shoppingCart[i].order.productId;
+				}
+			}
+
+			return list;
+		}
+
+		return list;
 	}
 
 	/**
