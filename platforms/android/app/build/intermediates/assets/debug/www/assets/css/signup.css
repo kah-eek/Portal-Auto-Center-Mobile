@@ -53,12 +53,18 @@
   border-radius: 250px;
   width: 40%;
   height: 135px;
-  /*background-color: red;*/
+  /*background-color: #ccc;*/
 }
-.choose-pic i
+.choose-pic img
+{
+  width: 100%;
+  height: 100%;
+  border-radius: 250px;
+}
+/*.choose-pic i
 {
   font-size: 11rem;
-}
+}*/
 
 /*Combo box*/
 .combo-box

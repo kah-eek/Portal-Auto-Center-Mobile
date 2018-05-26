@@ -90,7 +90,6 @@
         <!-- Client's State -->
         <select class="combo-box" required name="cbxEstado">
           <option selected disabled value="">Estado</span></option>
-          <option value="1">São Paulo</option>
         </select>
 
         <!-- Client's city -->
@@ -118,7 +117,24 @@
       </nav>
       <!-- *********************** -->
 
+      <!-- Models -->
+      <script src="js/model/State.js"></script>
+      <!-- DAOs -->
+      <script src="js/DAO/StateDAO.js"></script>
+
       <script>
+
+        // Get States to fill combo box
+        State.getStates(function(states)
+          {
+            for (var i = 0; i < states.length; i++) 
+            {
+              $('select[name="cbxEstado"]').append(
+                `<option value="${states[i].id_estado}">${states[i].estado}</option>`
+              );
+            }
+          }
+        );
         
 
         // Get the client logged on application
@@ -161,7 +177,11 @@
         $('#cep').val(client.cep);
 
         // STATE
-        $('select[name="cbxEstado"]').find(`option[value="${client.id_estado}"]`).prop('selected',true);
+        setTimeout(function()
+          {
+            $('select[name="cbxEstado"]').find(`option[value="${client.id_estado}"]`).prop('selected',true);
+          },200
+        );
 
         // City
         $('#city').val(client.cidade);

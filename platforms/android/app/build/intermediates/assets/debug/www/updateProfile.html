@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no">
-    <title>Portal Auto Center</title>
+    <title>Auto Fast</title>
     <link rel="stylesheet" type="text/css" href="assets/css/pac_framework.css">
     <link rel="stylesheet" type="text/css" href="assets/css/normalize.css">
     <link rel="stylesheet" type="text/css" href="assets/css/signup.css">
@@ -35,48 +35,49 @@
 
         <!-- User's profile picture -->
         <label class="block choose-pic" for="userPic">
-          <i class="material-icons">
+          <img id="client-picture" src="">
+          <!-- <i class="material-icons">
             account_circle
-          </i>
+          </i> -->
         </label>  
         <input id="userPic" type="file" hidden name="btnUserPic">
 
         <!-- Client's username -->
-        <input class="input-text" type="text" required name="txtUsuario" placeholder="Usuário">
+        <input id="username" class="input-text" type="text" required name="txtUsuario" placeholder="Usuário">
 
         <!-- Client's password -->
-        <input class="input-text" type="password" required name="txtSenha" placeholder="Senha">
+        <input id="password" class="input-text" type="password" required name="txtSenha" placeholder="Senha">
 
         <!-- Content divisor -->
         <div class="divisor"></div>
         
         <!-- Client's name -->
-        <input class="input-text" type="text" required name="txtNome" placeholder="Nome completo">
+        <input id="name" class="input-text" type="text" required name="txtNome" placeholder="Nome completo">
 
         <!-- Client's birthday -->
-        <input class="input-text" type="text" required name="txtDtNasc" placeholder="Data de nascimento">
+        <input id="birthdate" class="input-text" type="text" required name="txtDtNasc" placeholder="Data de nascimento">
 
         <!-- Client's cpf -->
-        <input class="input-text" type="text" required name="txtCpf" placeholder="CPF">
+        <input id="cpf" class="input-text" type="text" required name="txtCpf" placeholder="CPF">
 
         <!-- Client's email -->
-        <input class="input-text" type="text" required name="txtEmail" placeholder="E-mail">
+        <input id="email" class="input-text" type="text" required name="txtEmail" placeholder="E-mail">
 
         <!-- Client's celular -->
-        <input class="input-text" type="text" required name="txtCcelular" placeholder="Celular">
+        <input id="cellphone" class="input-text" type="text" required name="txtCelular" placeholder="Celular">
 
         <!-- Client's telefone -->
-        <input class="input-text" type="text" required name="txtTelefone" placeholder="Telefone">
+        <input id="telephone" class="input-text" type="text" required name="txtTelefone" placeholder="Telefone">
 
 
         <span class="sex-label">Sexo</span>
         <!-- Client's sex container -->
         <div class="client-sex-conatiner">
           <div class="sex-rbt">
-            <input class="input-radio" type="radio" name="rbtSexo" value="F">Feminino
+            <input id="f-sex" class="input-radio" type="radio" name="rbtSexo" value="F">Feminino
           </div>
           <div class="sex-rbt">
-            <input class="input-radio" type="radio" name="rbtSexo" value="M">Masculino        
+            <input id="m-sex" class="input-radio" type="radio" name="rbtSexo" value="M">Masculino        
           </div>
         </div>
 
@@ -84,7 +85,7 @@
         <div class="divisor"></div>
 
         <!-- Client's zip code -->
-        <input class="input-text" type="text" required name="txtCep" placeholder="CEP">
+        <input id="cep" class="input-text" type="text" required name="txtCep" placeholder="CEP">
 
         <!-- Client's State -->
         <select class="combo-box" required name="cbxEstado">
@@ -93,19 +94,19 @@
         </select>
 
         <!-- Client's city -->
-        <input class="input-text" type="text" required name="txtCidade" placeholder="Cidade">
+        <input id="city" class="input-text" type="text" required name="txtCidade" placeholder="Cidade">
 
         <!-- Client's neighborhood -->
-        <input class="input-text" type="text" required name="txtBairro" placeholder="Bairro">
+        <input id="neighborhood" class="input-text" type="text" required name="txtBairro" placeholder="Bairro">
 
         <!-- Client's complement -->
-        <input class="input-text" type="text" required name="txtComplemento" placeholder="Complemento">
+        <input id="complement" class="input-text" type="text" required name="txtComplemento" placeholder="Complemento">
 
         <!-- Client's address street -->
-        <input class="input-text" type="text" required name="txtLogradouro" placeholder="Logradouro">
+        <input id="street" class="input-text" type="text" required name="txtLogradouro" placeholder="Logradouro">
 
         <!-- Client's address number -->
-        <input class="input-text" type="text" required name="txtNumeroEnd" placeholder="Número">
+        <input id="address-number" class="input-text" type="text" required name="txtNumeroEnd" placeholder="Número">
 
       </div>
 
@@ -116,6 +117,68 @@
         </a>
       </nav>
       <!-- *********************** -->
+
+      <script>
+        
+
+        // Get the client logged on application
+        var client = JSON.parse(localStorage.getItem('client'));
+
+        /*
+          Fill data into field
+        */
+        // Client's profile picture
+        $('#client-picture').attr('src',client.foto_perfil);
+
+        // Username
+        $('#username').val(client.usuario);
+
+        // Password
+        $('#password').val(client.senha);
+
+        // Name
+        $('#name').val(client.nome);
+
+        // Birth date
+        $('#birthdate').val(client.dtNasc);
+
+        // CPF
+        $('#cpf').val(client.cpf);
+
+        // Email
+        $('#email').val(client.email);
+
+        // Cellphone
+        $('#cellphone').val(client.celular);
+
+        // Telephone
+        $('#telephone').val(client.telefone);
+
+        // Sex
+        client.sexo == "M" ? $('#m-sex').prop('checked',true) : $('#f-sex').prop('checked',true); 
+
+        // CEP
+        $('#cep').val(client.cep);
+
+        // STATE
+        $('select[name="cbxEstado"]').find(`option[value="${client.id_estado}"]`).prop('selected',true);
+
+        // City
+        $('#city').val(client.cidade);
+
+        // Neighborhood
+        $('#neighborhood').val(client.bairro);
+
+        // Complement
+        $('#complement').val(client.complemento);
+
+        // Street
+        $('#street').val(client.logradouro);
+
+        // Address number
+        $('#address-number').val(client.numero);
+
+      </script>
 
     </form>
   </body>
