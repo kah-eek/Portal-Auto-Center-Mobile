@@ -65,6 +65,11 @@
       // Try to Login
       $('#login').click(function(){
 
+        if($('#txtUsername').val() !== '' && $('#txtPassword').val() !== '')
+        {
+          console.log('null');
+        }
+
         var client = new Client();
 
         // Create a instance of User containing authentication data informed
@@ -99,8 +104,6 @@
           },
           function(error) // Fail callback
           {
-            // Debugge
-            console.log(error);
             // Show a toast with login incorrect message
             toast('Falha ao tentar logar !',4000);
           }
