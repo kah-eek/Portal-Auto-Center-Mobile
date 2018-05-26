@@ -42,7 +42,7 @@
 
           <!-- Product's name -->
           <div id="product-name" class="product-name uppercase">
-            <span class="block white-txt">Pneu</span>
+            <span id="name" class="block white-txt"></span>
           </div>
 
           <!-- Add to shopping cart button -->
@@ -137,7 +137,7 @@
             </div>
 
             <!-- Content divisor -->
-            <div class="divisor"></div>
+            <div id="note-divisor" class="divisor"></div>
 
             <!-- Product's observation -->
             <div id="long-text-obs" class="long-text-row">
@@ -241,11 +241,15 @@
           /*
             Fil some fields with product's data
           */
+          // Name
+          $('#name').text(product.nome);
+
           // Image
           $('#product-img').css(
             {
               'backgroundImage':`url(${picturePath['product']+getPictureName('produto',product.imagem)})`,
-              'backgroundAttachment': 'fixed'
+              'backgroundAttachment': 'fixed',
+              'backgroundRepeat':'no-repeat'
             }
           );
 
@@ -265,10 +269,24 @@
           $('#manufacturer').text(product.fabricante);
 
           // Description
+          // Verify if data is blank
           product.descricao === '' || product.descricao == null ?  $('#long-text-desc').hide() : $('#description').text(product.descricao);
 
           // Observation
-          product.observacao === '' || product.observacao == null ?  $('#long-text-obs').hide() : $('#observation').text(product.observacao);
+          // Verify if data is blank
+          if(product.observacao === '' || product.observacao == null)
+          {
+            // Hide the observation field
+            $('#long-text-obs').hide(); 
+            // Hide the content divisor
+            $('#note-divisor').hide();
+          } 
+          else 
+          {
+            // Fill observation field with data
+            $('#observation').text(product.observacao);
+          }         
+
 
         },
         function()
