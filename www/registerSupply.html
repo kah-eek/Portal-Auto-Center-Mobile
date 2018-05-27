@@ -74,7 +74,7 @@
 
       // Get vehicles's plates
       Vehicle.getVehiclePlates(
-        4, // client's id
+        client.id_cliente, // client's id
         function(resp) // callback success
         { 
           // verify if resp returns some records
@@ -90,15 +90,20 @@
           }
           else 
           {
-            Dialog.alert(
-              'Abastecimento', 
-              'Você não possuí veículos cadastrados :(', 
-              function()
-              {
-                console.log('ok');
-              }, 
-              'OK'
-            );
+
+            alert('Você não possuí veículos cadastrados :(');
+
+            location.replace('clientSupply.html');
+
+            // Dialog.showAlert(
+            //   'Abastecimento', 
+            //   'Você não possuí veículos cadastrados :(', 
+            //   function()
+            //   {
+            //     console.log('ok');
+            //   }, 
+            //   'OK'
+            // );
           }
         }
       );

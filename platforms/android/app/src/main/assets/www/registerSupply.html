@@ -90,15 +90,32 @@
           }
           else 
           {
-            Dialog.alert(
-              'Abastecimento', 
-              'Você não possuí veículos cadastrados :(', 
-              function()
-              {
-                console.log('ok');
-              }, 
-              'OK'
-            );
+            console.log('else');
+
+            document.addEventListener('deviceready',function(){
+
+              console.log('already');
+
+              navigator.notification.confirm(
+                "Abastecimento",
+                function()
+                {
+                  console.log('ok');
+                },
+                'Você não possuí veículos cadastrados :(',
+                ['ok','no']
+              );
+            },false);
+
+            // Dialog.showAlert(
+            //   'Abastecimento', 
+            //   'Você não possuí veículos cadastrados :(', 
+            //   function()
+            //   {
+            //     console.log('ok');
+            //   }, 
+            //   'OK'
+            // );
           }
         }
       );

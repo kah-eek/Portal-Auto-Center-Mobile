@@ -1,5 +1,5 @@
 // Host
-var host = '192.168.0.100';
+var host = '192.168.0.110';
 // var host = '127.0.0.1';
 	
 // API Routes 
