@@ -21,8 +21,6 @@
       "cordova-plugin-dialogs": {},
       "cordova-plugin-datepicker": {}
     },
-    "platforms": [
-      "android"
-    ]
+    "platforms": []
   }
 }

@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="assets/css/pac_framework.css">
     <link rel="stylesheet" type="text/css" href="assets/css/normalize.css">
     <link rel="stylesheet" type="text/css" href="assets/css/registerSupply.css">
+    <script src="cordova.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src="js/api.js"></script>
     <script src="js/utils.js"></script>
@@ -45,7 +46,7 @@
         <input class="input-text" type="text" placeholder="Localização do posto" required name="txtLocalizacaoPosto">
 
         <!-- Date -->
-        <input class="input-text" maxlength="10" type="text" placeholder="Data do abastecimento" required name="txtDataAbastecimento">
+        <input id="txtDataAbastecimento" class="input-text" maxlength="10" type="text" placeholder="Data do abastecimento" required name="txtDataAbastecimento">
 
         <!-- Vehicle's mileage -->
         <input class="input-text" maxlength="6" type="text" placeholder="Quilometragem do veículo" required name="txtQuilometragemVeiculo">
@@ -64,11 +65,12 @@
     <script src="js/model/Client.js"></script>
     <script src="js/model/Vehicle.js"></script>
     <script src="js/model/Dialog.js"></script>
+    <script src="js/model/DatePicker.js"></script>
     <!-- DAOs -->
     <script src="js/dao/VehicleDAO.js"></script>
 
-    <script>
-      
+    <script>    
+
       // Get the current client logged on application
       var client = new Client().getClientFromApp();
 
@@ -90,23 +92,35 @@
           }
           else 
           {
-
-            alert('Você não possuí veículos cadastrados :(');
-
-            location.replace('clientSupply.html');
-
-            // Dialog.showAlert(
-            //   'Abastecimento', 
-            //   'Você não possuí veículos cadastrados :(', 
-            //   function()
-            //   {
-            //     console.log('ok');
-            //   }, 
-            //   'OK'
-            // );
+            // Show alert about vehicles not existents 
+            Dialog.showAlert(
+              'Abastecimento', 
+              'Você não possuí veículos cadastrados :(', 
+              function()
+              {
+                location.replace('clientSupply.html');
+              }, 
+              'OK'
+            );
           }
         }
       );
+
+
+      $('#txtDataAbastecimento').click(function(){
+        var dp = new DatePicker(
+          function(date)
+          {
+            $('#txtDataAbastecimento').val(
+              dp.getOnFormat('user', String(date))
+            );
+          },
+          function(error)
+          {
+            console.error(error);
+          }
+        );
+      });
 
     </script>
 
