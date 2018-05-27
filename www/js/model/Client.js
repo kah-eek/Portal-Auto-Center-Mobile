@@ -12,5 +12,14 @@ class Client
 		new ClientDAO().existsClient(userObj, callbackSuccess, callbackFail);
 	}
 
+	/**
+	* Get the current client logged on application
+	* @return JSON Current client logged on application
+	*/
+	getClientFromApp()
+	{
+		return JSON.parse(localStorage.getItem('client'));
+	}
+
 
 }

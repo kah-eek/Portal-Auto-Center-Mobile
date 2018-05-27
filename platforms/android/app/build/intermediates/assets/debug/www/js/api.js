@@ -5,5 +5,7 @@ var host = '192.168.0.100';
 // API Routes 
 var api = {
 	'authentication':`http://${host}/Portal-Auto-Center-API/api/v1/user/`,
-	'state':`http://${host}/Portal-Auto-Center-API/api/v1/state/`
-}
+	'state':`http://${host}/Portal-Auto-Center-API/api/v1/state/`,
+	'product':`http://${host}/Portal-Auto-Center-API/api/v1/product/`,
+	'vehicle':`http://${host}/Portal-Auto-Center-API/api/v1/vehicle/`
+};

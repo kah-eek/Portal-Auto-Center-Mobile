@@ -349,11 +349,17 @@ input::placeholder
 }
 /* ************************************************** */
 
+/* ********************** Borders ******************** */
+/* Background */
+.no-border{border: none;}
+/* ************************************************** */
+
 /* ********************** Colors ******************** */
 /* Background */
 .green-light{background-color: #00C853;}
 .dark-blue{background-color: #2A2E37;}
 .yellow-light{background-color: #FFFF00;}
+.transparent{background-color: transparent;}
 /* ------- */
 
 /* Font */

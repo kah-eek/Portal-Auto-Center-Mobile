@@ -1,5 +1,12 @@
 /* CSS */
 
+/*Toast*/
+.toast
+{
+  /*Reposition it at screen center*/
+  margin-right: -130px;
+}
+
 /* Snackbar */
 .snackbar
 {

@@ -57,6 +57,7 @@
     <script src="js/model/Client.js"></script>
     <script src="js/model/User.js"></script>
     <script src="js/model/Dialog.js"></script>
+    <script src="js/model/ShoppingCart.js"></script>
     <!-- DAOs -->
     <script src="js/dao/ClientDAO.js"></script>
 
@@ -64,6 +65,11 @@
       
       // Try to Login
       $('#login').click(function(){
+
+        if($('#txtUsername').val() !== '' && $('#txtPassword').val() !== '')
+        {
+          console.log('null');
+        }
 
         var client = new Client();
 
@@ -88,6 +94,9 @@
               // Set auto login on application
               localStorage.setItem('autologin','true');
 
+              // Create shooping cart
+              new ShoppingCart();
+
               // Forward the user to home page
               location.replace('home.html');
             }
@@ -99,8 +108,6 @@
           },
           function(error) // Fail callback
           {
-            // Debugge
-            console.log(error);
             // Show a toast with login incorrect message
             toast('Falha ao tentar logar !',4000);
           }
