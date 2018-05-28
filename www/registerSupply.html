@@ -87,7 +87,10 @@
     <script src="js/dao/SupplyRegisterDAO.js"></script>
 
     <script>    
+      // DatePicker
+      var dp = null;
 
+      // Geolocation
       var geo = new Geolocation();
 
       // Get the current coordinates from user
@@ -168,7 +171,7 @@
 
       // Show datepicker 
       $('#txtDataAbastecimento').click(function(){
-        var dp = new DatePicker(
+        dp = new DatePicker(
           function(date)
           {
             $('#txtDataAbastecimento').val(
@@ -182,30 +185,40 @@
         );
       });
 
-
+      // Register the new supply
       $('#form-supply-data').submit(function(e){
         e.preventDefault();
 
+        // Supply instance 
         var supplyRegister = new SupplyRegister
         (
           $('#cbxCombustivel').find(':selected').val(), 
           $('#cbxVeiculo').find(':selected').val(), 
           $('#txtValorAbastecimento').val(),  
           geo,
+          dp.getOnFormat('mysql',$('#txtDataAbastecimento').val())
         );
 
         // console.log(supplyRegister);
         // console.log(geo);
 
+        // Register supply into database
         supplyRegister.setSupplyRegister(
           supplyRegister, 
           function(resp)
           {
             // console.log(resp);
             toast(resp.mensagem,4000);
+
+            // Redirect user to previous page
+            setTimeout(function(){
+              location.replace('clientSupply.html');
+            },2000);
+
           }, 
-          function(error)
+          function(error) // Faill in to attempt register the new supply register 
           {
+            // Show alert about it
             Dialog.showAlert(
               'Abastecimento', 
               'Falha ao tentar registrar o abastecimento', 

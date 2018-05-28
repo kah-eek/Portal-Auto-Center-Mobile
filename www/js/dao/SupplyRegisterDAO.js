@@ -17,7 +17,8 @@ class SupplyRegisterDAO
 				idVeiculoCliente: supplyRegisterObj.idVeiculoCliente,
 				valorAbastecimento: supplyRegisterObj.valorAbastecimento,
 				latitude: supplyRegisterObj.latitude,
-				longitude: supplyRegisterObj.longitude
+				longitude: supplyRegisterObj.longitude,
+				logControleAbastecimento : supplyRegisterObj.logControleAbastecimento
 			},
 			dataType:'json',
 			success:function(response){

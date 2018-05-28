@@ -90,9 +90,13 @@ class DatePicker
 
 			return day+'/'+formatedMonth+'/'+year;
 		}
-		elseif(formatType == 'mysql')
-		{
-			return fullDate.substring(0,4)+'-'+fullDate.substring(5,7)+'-'fullDate.substring(8);
+		else if(formatType == 'mysql')
+		{	
+			var day = fullDate.substring(0,2);
+			var month = fullDate.substring(3,5);
+			var year = fullDate.substring(6);
+
+			return year+'-'+month+'-'+day;
 		}
 	}
 }
