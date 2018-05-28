@@ -185,10 +185,11 @@
         );
       });
 
-
+      // Register the new supply
       $('#form-supply-data').submit(function(e){
         e.preventDefault();
 
+        // Supply instance 
         var supplyRegister = new SupplyRegister
         (
           $('#cbxCombustivel').find(':selected').val(), 
@@ -201,6 +202,7 @@
         // console.log(supplyRegister);
         // console.log(geo);
 
+        // Register supply into database
         supplyRegister.setSupplyRegister(
           supplyRegister, 
           function(resp)
@@ -208,13 +210,15 @@
             // console.log(resp);
             toast(resp.mensagem,4000);
 
+            // Redirect user to previous page
             setTimeout(function(){
               location.replace('clientSupply.html');
             },2000);
-            
+
           }, 
-          function(error)
+          function(error) // Faill in to attempt register the new supply register 
           {
+            // Show alert about it
             Dialog.showAlert(
               'Abastecimento', 
               'Falha ao tentar registrar o abastecimento', 

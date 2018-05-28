@@ -1,4 +1,4 @@
-#Mon May 28 00:38:31 BRT 2018
+#Mon May 28 01:08:40 BRT 2018
 base.0=C\:\\xampp\\htdocs\\Portal-Auto-Center-Mobile\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
 renamed.0=classes.dex
 file.0=C\:\\xampp\\htdocs\\Portal-Auto-Center-Mobile\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0\\classes.dex
