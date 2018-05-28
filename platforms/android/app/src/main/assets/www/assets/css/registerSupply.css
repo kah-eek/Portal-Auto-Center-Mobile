@@ -1,5 +1,11 @@
 /* CSS */
 
+/*Toast*/
+.toast
+{
+  margin-right: -150px;
+}
+
 /* Snackbar */
 .snackbar
 {

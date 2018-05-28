@@ -30,6 +30,11 @@ class DatePicker
 		 },false);  
 	}
 
+	/**
+	* Get date on one format
+	* @param formatType Fromat type. (user = dd/mm/yyyy)
+	* @return String Date formatted
+	*/
 	getOnFormat(formatType, fullDate)
 	{
 
@@ -47,43 +52,47 @@ class DatePicker
 					formatedMonth = '01';
 					break;
 				case 'feb':
-					formatedMonth = '01';
+					formatedMonth = '02';
 					break;
 				case 'mar':
-					formatedMonth = '01';
+					formatedMonth = '03';
 					break;
 				case 'apr':
-					formatedMonth = '01';
+					formatedMonth = '04';
 					break;
 				case 'may':
-					formatedMonth = '01';
+					formatedMonth = '05';
 					break;
 				case 'jun':
-					formatedMonth = '01';
+					formatedMonth = '06';
 					break;
 				case 'jul':
-					formatedMonth = '01';
+					formatedMonth = '07';
 					break;
 				case 'aug':
-					formatedMonth = '01';
+					formatedMonth = '08';
 					break;
 				case 'sep':
-					formatedMonth = '01';
+					formatedMonth = '09';
 					break;
 				case 'oct':
-					formatedMonth = '01';
+					formatedMonth = '10';
 					break;
 				case 'nov':
-					formatedMonth = '01';
+					formatedMonth = '11';
 					break;
 				case 'dec':
-					formatedMonth = '01';
+					formatedMonth = '12';
 					break;
 			}
 
 			var year = fullDate.substring(11,15);
 
 			return day+'/'+formatedMonth+'/'+year;
+		}
+		elseif(formatType == 'mysql')
+		{
+			return fullDate.substring(0,4)+'-'+fullDate.substring(5,7)+'-'fullDate.substring(8);
 		}
 	}
 }

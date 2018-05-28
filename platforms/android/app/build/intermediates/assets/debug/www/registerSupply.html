@@ -13,6 +13,9 @@
     <script src="js/utils.js"></script>
   </head>
   <body>
+
+    <!-- Toast -->
+    <div class="toast"></div>
     
     <!-- Page's header -->
     <nav class="nav-header white-txt">
@@ -29,21 +32,26 @@
     </nav>
     <!-- *********************** -->
 
-    <form enctype="multipart/form-data">
+    <form id="form-supply-data">
       
       <!-- Main content -->
       <div class="main">
 
         <!-- Supplied value -->
-        <input class="input-text" type="text" placeholder="Valor abastecido" required name="txtValorAbastecimento">
+        <input id="txtValorAbastecimento" class="input-text" type="text" placeholder="Valor abastecido" required name="txtValorAbastecimento">
 
         <!-- Vehicle -->
         <select id="cbxVeiculo" class="input-text" required name="cbxVeiculo">
           <option selected disabled value="">Veículo</option>
         </select>
 
+        <!-- Fuel type -->
+        <select id="cbxCombustivel" class="input-text" required name="cbxCombustivel">
+          <option selected disabled value="">Combustível</option>
+        </select>
+
         <!-- Gas station location -->
-        <input class="input-text" type="text" placeholder="Localização do posto" required name="txtLocalizacaoPosto">
+        <!-- <input id="txtLocalizacaoPosto" class="input-text" type="text" placeholder="Localização do posto" required name="txtLocalizacaoPosto"> -->
 
         <!-- Date -->
         <input id="txtDataAbastecimento" class="input-text" maxlength="10" type="text" placeholder="Data do abastecimento" required name="txtDataAbastecimento">
@@ -66,10 +74,40 @@
     <script src="js/model/Vehicle.js"></script>
     <script src="js/model/Dialog.js"></script>
     <script src="js/model/DatePicker.js"></script>
+    <script src="js/model/Geolocation.js"></script>
+    <script src="js/model/Address.js"></script>
+    <script src="js/model/Fuel.js"></script>
+    <script src="js/model/SupplyRegister.js"></script>
+    <!-- Component -->
+    <script src="js/component.js"></script>
     <!-- DAOs -->
     <script src="js/dao/VehicleDAO.js"></script>
+    <script src="js/dao/AddressDAO.js"></script>
+    <script src="js/dao/FuelDAO.js"></script>
+    <script src="js/dao/SupplyRegisterDAO.js"></script>
 
     <script>    
+
+      var geo = new Geolocation();
+
+      // Get the current coordinates from user
+      geo.getCoordinates(
+          function(position)
+          {
+            console.log('Coordenadas obtidas com sucesso!');
+            // Set latitude and longitude in object
+            geo.latitude = position.coords.latitude;
+            geo.longitude = position.coords.longitude;
+
+          },
+          function(error)
+          {
+            console.warn(error);
+            // Set latitude and longitude in object
+            geo.latitude = 0;
+            geo.longitude = 0;
+          }
+      );
 
       // Get the current client logged on application
       var client = new Client().getClientFromApp();
@@ -106,7 +144,29 @@
         }
       );
 
+      // Fill combo box with fuels came from database 
+      Fuel.getFuels(
+          function(resp)
+          {
+            for(var i = 0; i < resp.fuels.length; i++)
+            {
+              $('#cbxCombustivel').append
+              (
+                `<option value="${resp.fuels[i].id_tipo_combustivel}">${resp.fuels[i].combustivel}</option>`
+              );
+            }
+          }, 
+          function(error)
+          {
+            console.error(error);
+            $('#cbxCombustivel').append
+            (
+              `<option value="2">Gasolina</option>`
+            );
+          }
+        );
 
+      // Show datepicker 
       $('#txtDataAbastecimento').click(function(){
         var dp = new DatePicker(
           function(date)
@@ -120,6 +180,41 @@
             console.error(error);
           }
         );
+      });
+
+
+      $('#form-supply-data').submit(function(e){
+        e.preventDefault();
+
+        var supplyRegister = new SupplyRegister
+        (
+          $('#cbxCombustivel').find(':selected').val(), 
+          $('#cbxVeiculo').find(':selected').val(), 
+          $('#txtValorAbastecimento').val(),  
+          geo,
+        );
+
+        // console.log(supplyRegister);
+        // console.log(geo);
+
+        supplyRegister.setSupplyRegister(
+          supplyRegister, 
+          function(resp)
+          {
+            // console.log(resp);
+            toast(resp.mensagem,4000);
+          }, 
+          function(error)
+          {
+            Dialog.showAlert(
+              'Abastecimento', 
+              'Falha ao tentar registrar o abastecimento', 
+              function(){}, 
+              'OK'
+            );
+          }
+        );
+
       });
 
     </script>
