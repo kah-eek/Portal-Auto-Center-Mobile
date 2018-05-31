@@ -90,8 +90,11 @@
     <script src="js/model/FuelSupply.js"></script>
     <script src="js/model/Client.js"></script>
     <script src="js/model/DatePicker.js"></script>
+    <script src="js/model/Address.js"></script>
+    <script src="js/model/Geolocation.js"></script>
     <!-- DAOs -->
     <script src="js/dao/FuelSupplyDAO.js"></script>
+    <script src="js/dao/AddressDAO.js"></script>
 
     <script>
         var client = new Client().getClientFromApp(); 
@@ -106,7 +109,28 @@
             {
               // Fulldate
               var fullDate = resp.fuelSupplies[i].log_controle_abastecimento; 
-              var price = resp.fuelSupplies[i].valor_abastecido; 
+              var price = resp.fuelSupplies[i].valor_abastecimento; 
+              var km = resp.fuelSupplies[i].quilometro_rodado;
+              var latitude = resp.fuelSupplies[i].latitude;
+              var longitude = resp.fuelSupplies[i].longitude;
+
+              new Address().getAddress(
+                new Geolocation(latitude, longitude), 
+                function(address) // callback sucesso
+                {
+                  if(address.results.length != 0)
+                  {
+                    var fullAddress = address.results[i].formatted_address;
+
+                    // Show full address
+                    $('.full-address').text(fullAddress);
+                  }
+                }, 
+                function() // callback de falha
+                {
+
+                }
+              );
 
               $('.cards-container').append(
                 `<!-- Card -->
@@ -133,12 +157,12 @@
 
                     <!-- Mileage -->
                     <div class="row">
-                      <span class="block">KM ${}</span>
+                      <span class="block">KM ${km}</span>
                     </div>
                     
                     <!-- Gas station location -->
                     <div class="row">
-                      <span class="block ellipsis">Rua Prada Lima Souza, 521, Bairras-São Paulo</span>
+                      <span class="block ellipsis full-address"></span>
                     </div>
                   </div>
                 </div>`
