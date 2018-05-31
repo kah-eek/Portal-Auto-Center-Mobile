@@ -191,6 +191,17 @@
       
       });
 
+      // Send data to database
+      $('form[name="frmRequestService"]').submit(function(e){
+        e.preventDefault();
+
+        var hour = DatePicker.parseHour('mysql', $('#txtHoraAgendamento').val());
+        var date = DatePicker.getOnFormat('mysql', $('#txtDataAgendamento').val());
+        var log = `${date} ${hour}`;
+        
+          
+      });
+
     </script>
 
   </body>

@@ -48,15 +48,22 @@ class DatePicker
 	*/
 	static parseHour(formatTo, fullHour)
 	{
+
 		if (formatTo == 'user')
 		{
 			// Thu May 31 2018 16:54:00 GMT-0300 (-03)
-
 			var hour = fullHour.substring(16,18);
 			var minutes = fullHour.substring(19,21);
-			// var seconds = fullHour.substring(22,24);
+			var seconds = fullHour.substring(22,24);
 
 			return `${hour}h${minutes}`; 
+		}
+		else if(formatTo == 'mysql')
+		{
+			// 11h25
+			var hour = fullHour.substring(0,2);
+			var minutes = fullHour.substring(3);
+			return `${hour}:${minutes}:00`;
 		}
 	}
 
