@@ -237,7 +237,7 @@
 
     <!-- Total pay container -->
     <div id="total-pay" class="total-pay">
-      <span class="block white-txt">R$ 748.836,39</span>
+      <span class="block white-txt">R$ </span>
     </div>
 
     <!-- Reset password button -->
@@ -268,7 +268,7 @@
             shoppingCart[i].order.productId, // product's id 
             function(product)
             {
-              console.log(product);
+              // console.log(product);
               $('#main').append
               (
                  `<!-- Item -->
@@ -341,7 +341,11 @@
           );
         }
       }
-      
+
+      // Set total value existent into shopping cart
+      $('#total-pay').find('span').append(ShoppingCart.getFullAmount());
+
+
       // Show total to pay
       setTimeout(function()
       {

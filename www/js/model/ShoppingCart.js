@@ -69,6 +69,19 @@ class ShoppingCart
 		return JSON.parse(localStorage.getItem('shopping_cart'));
 	}
 
+	static getFullAmount()
+	{
+		var shoppingCart = ShoppingCart.getShoppingCart();
+		var totalPay = 0;
+
+		for(var i = 0; i < shoppingCart.length; i++)
+		{
+			totalPay += parseFloat(shoppingCart[i].order.price);
+		}
+
+		return totalPay;
+	}
+
 	/**
 	* Add a new order into shopping cart
 	* @param orderObj Order that will insert into shopping cart
