@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="assets/css/pac_framework.css">
     <link rel="stylesheet" type="text/css" href="assets/css/normalize.css">
     <link rel="stylesheet" type="text/css" href="assets/css/requestService.css">
+    <script src="cordova.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src="js/api.js"></script>
     <script src="js/utils.js"></script>
@@ -72,10 +73,10 @@
       </div>
 
       <!-- Scheduling date -->
-      <input class="input-text" required type="text" placeholder="Data a ser agendada" name="txtDataAgendamento">
+      <input id="txtDataAgendamento" class="input-text" required type="text" placeholder="Data a ser agendada" name="txtDataAgendamento">
 
       <!-- Scheduling hour -->
-      <input class="input-text" required type="text" placeholder="Hora a ser agendada" name="txtHoraAgendamento">
+      <input id="txtHoraAgendamento" class="input-text" required type="text" placeholder="Hora a ser agendada" name="txtHoraAgendamento">
 
       <!-- Navigation bar (header) -->
       <nav class="snackbar green-light uppercase">
@@ -89,27 +90,53 @@
 
     <!-- Models -->
     <script src="js/model/Service.js"></script>
+    <script src="js/model/DatePicker.js"></script>
     <!-- DAOs -->
     <script src="js/dao/ServiceDAO.js"></script>
 
     <script>
 
-      // Get all service providers
-      Service.getServiceProviders(
-        function(resp) // calback de sucesso
-        {
-          for (var i = 0; i < resp.provedores.length; i++) 
+       // Show datepicker 
+      $('#txtHoraAgendamento').click(function(){
+        console.log('ok');
+        new DatePicker(
+          function(resp)
           {
-            var provider = resp.provedores[i]; 
+            $('#txtHoraAgendamento').val(DatePicker.parseHour('user', String(resp)));
+          },
+          function(error)
+          {
+            console.log(error);
+          },
+          'time'
+        );
+      });
 
-            $('select[name="cbxPrestadorServico"]').append(
-              `<option value="${provider.id_parceiro}">${provider.nome_fantasia}</option>`
-            );
-          }
-        }, 
-        function() // calback de falha
-        {}
-      );
+      // Get all service providers when selected the service
+      $('select[name="cbxServico"]').change(function(){
+        
+        $('select[name="cbxPrestadorServico"]').html(
+          '<option value="" selected disabled>Serviço</option>'
+        );
+
+        // Get all service providers
+        Service.getServiceProviders(
+          $(this).find(':selected').html(),
+          function(resp) // calback de sucesso
+          {
+            for (var i = 0; i < resp.provedores.length; i++) 
+            {
+              var provider = resp.provedores[i]; 
+
+              $('select[name="cbxPrestadorServico"]').append(
+                `<option value="${provider.id_parceiro}">${provider.nome_fantasia}</option>`
+              );
+            }
+          }, 
+          function() // calback de falha
+          {}
+        );
+      });
       
       // Get all services from database
       Service.getServices(
@@ -133,9 +160,13 @@
 
         // Get service's details selected
         new Service().getServiceDetailsByPartner(
-          $('select[name="cbxPrestadorServico"]')[0].selectedIndex, 
+          $('select[name="cbxPrestadorServico"]')[0].value, 
           function(resp) // calback de sucesso
           {
+
+            $('.partnerInfs').show(200);
+            $('.partnerInfs').css({display:'flex'});
+
             var price = resp.service.preco;
             var email = resp.service.email;
             var fullAddress = `${resp.service.logradouro}, ${resp.service.numero}, ${resp.service.cidade} - ${resp.service.estado}`;

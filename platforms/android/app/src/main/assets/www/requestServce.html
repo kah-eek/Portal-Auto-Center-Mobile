@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="assets/css/pac_framework.css">
     <link rel="stylesheet" type="text/css" href="assets/css/normalize.css">
     <link rel="stylesheet" type="text/css" href="assets/css/requestService.css">
+    <script src="cordova.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src="js/api.js"></script>
     <script src="js/utils.js"></script>
@@ -50,17 +51,14 @@
           <div class="info">
             <span class="block">
               <span class="bold">Preço:</span> 
-              <span class="green-light-txt">
-                R$ 120,00
-              </span>
+              <span id="service-price" class="green-light-txt"></span>
             </span>
           </div>
 
           <!-- Partner's address -->
           <div class="info">
             <span class="block">
-              <span class="bold">Endereço:</span> 
-              Rua Clavis Lima, 2485, São Paulo - São Paulo
+              <span id="fullAddress" class="bold">Endereço:</span> 
             </span>
           </div>
 
@@ -68,17 +66,17 @@
           <div class="info">
             <span class="block">
               <span class="bold">E-mail:</span> 
-              fastrun@fastrun.com.br
+              <span id="email"></span>
             </span>
           </div>
 
       </div>
 
       <!-- Scheduling date -->
-      <input class="input-text" required type="text" placeholder="Data a ser agendada" name="txtDataAgendamento">
+      <input id="txtDataAgendamento" class="input-text" required type="text" placeholder="Data a ser agendada" name="txtDataAgendamento">
 
       <!-- Scheduling hour -->
-      <input class="input-text" required type="text" placeholder="Hora a ser agendada" name="txtHoraAgendamento">
+      <input id="txtHoraAgendamento" class="input-text" required type="text" placeholder="Hora a ser agendada" name="txtHoraAgendamento">
 
       <!-- Navigation bar (header) -->
       <nav class="snackbar green-light uppercase">
@@ -89,5 +87,103 @@
       <!-- *********************** -->
 
     </form>
+
+    <!-- Models -->
+    <script src="js/model/Service.js"></script>
+    <script src="js/model/DatePicker.js"></script>
+    <!-- DAOs -->
+    <script src="js/dao/ServiceDAO.js"></script>
+
+    <script>
+
+       // Show datepicker 
+      $('#txtHoraAgendamento').click(function(){
+        console.log('ok');
+        new DatePicker(
+          function(resp)
+          {
+            console.log(resp);
+            console.log(DatePicker.parseHour('user', String(resp)));
+            $('#txtHoraAgendamento').val(DatePicker.parseHour('user', String(resp)));
+          },
+          function(error)
+          {
+            console.log(error);
+          },
+          'time'
+        );
+      });
+
+      // Get all service providers when selected the service
+      $('select[name="cbxServico"]').change(function(){
+        
+        $('select[name="cbxPrestadorServico"]').html(
+          '<option value="" selected disabled>Serviço</option>'
+        );
+
+        // Get all service providers
+        Service.getServiceProviders(
+          $(this).find(':selected').html(),
+          function(resp) // calback de sucesso
+          {
+            for (var i = 0; i < resp.provedores.length; i++) 
+            {
+              var provider = resp.provedores[i]; 
+
+              $('select[name="cbxPrestadorServico"]').append(
+                `<option value="${provider.id_parceiro}">${provider.nome_fantasia}</option>`
+              );
+            }
+          }, 
+          function() // calback de falha
+          {}
+        );
+      });
+      
+      // Get all services from database
+      Service.getServices(
+        function(resp) // calback de sucesso
+        {
+          for (var i = 0; i < resp.servicos.length; i++) 
+          {
+            var service = resp.servicos[i]; 
+
+            $('select[name="cbxServico"]').append(
+              `<option value="${service.id_produto}">${service.nome}</option>`
+            );
+          }
+        }, 
+        function() // calback de falha
+        {}
+      );
+
+
+      $('select[name="cbxPrestadorServico"]').change(function(){
+
+        // Get service's details selected
+        new Service().getServiceDetailsByPartner(
+          $('select[name="cbxPrestadorServico"]')[0].value, 
+          function(resp) // calback de sucesso
+          {
+
+            $('.partnerInfs').show(200);
+            $('.partnerInfs').css({display:'flex'});
+
+            var price = resp.service.preco;
+            var email = resp.service.email;
+            var fullAddress = `${resp.service.logradouro}, ${resp.service.numero}, ${resp.service.cidade} - ${resp.service.estado}`;
+
+            $('#service-price').html(`R$ ${price}`);
+            $('#email').html(email);
+            $('#fullAddress').html(fullAddress);
+          }, 
+          function() // calback de falha
+          {}
+        );
+      
+      });
+
+    </script>
+
   </body>
 </html>

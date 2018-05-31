@@ -11,6 +11,9 @@ var api = {
 	'vehicle':`http://${host}/Portal-Auto-Center-API/api/v1/vehicle/`,
 	'fuel':`http://${host}/Portal-Auto-Center-API/api/v1/fuel/`,
 	'fuel_supply':`http://${host}/Portal-Auto-Center-API/api/v1/fuel/supply/`,
+	'service':`http://${host}/Portal-Auto-Center-API/api/v1/service/`,
+	'service_details':`http://${host}/Portal-Auto-Center-API/api/v1/service/details/`,
+	'service_provider':`http://${host}/Portal-Auto-Center-API/api/v1/service/provider/`,
 	'supply_register':`http://${host}/Portal-Auto-Center-API/api/v1/supplyRegister/`,
 	'google_geocode':`https://maps.googleapis.com/maps/api/geocode/json?latlng=`
 };

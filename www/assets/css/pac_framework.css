@@ -15,6 +15,9 @@
 }
 /* ************************************************************** */
 
+/*Remove blue border on select element*/
+*{outline: none;}
+/*___________________________________*/
 
 /* Hamburger Menu */
 .hamburger-container

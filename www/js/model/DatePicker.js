@@ -6,12 +6,22 @@ class DatePicker
 	* @param callbackSuccess Succeed to get the date selected
 	* @param callbackFail Fail in to get the date selected
 	*/
-	constructor(callbackSuccess,callbackFail)
+	constructor(callbackSuccess,callbackFail, type)
 	{
-		 var options = {
-		    date: new Date(),
-		    mode: 'date'
-		 };
+		if (type == undefined)
+		{
+			 var options = {
+			    date: new Date(),
+			    mode: 'date'
+			 };
+		}
+		else 
+		{
+			var options = {
+			    date: new Date(),
+			    mode: type
+			 };
+		}
 
 		 document.addEventListener('deviceready',function(){
 
@@ -28,6 +38,26 @@ class DatePicker
 		  	);
 		 
 		 },false);  
+	}
+
+	/**
+	* Parse full hour to one format
+	* @param formatTo Fromat type. (user = HHhMM)
+	* @param fullHour Full hour to parse it
+	* @return String Hour formatted
+	*/
+	static parseHour(formatTo, fullHour)
+	{
+		if (formatTo == 'user')
+		{
+			// Thu May 31 2018 16:54:00 GMT-0300 (-03)
+
+			var hour = fullHour.substring(16,18);
+			var minutes = fullHour.substring(19,21);
+			// var seconds = fullHour.substring(22,24);
+
+			return `${hour}h${minutes}`; 
+		}
 	}
 
 	/**
@@ -128,6 +158,34 @@ class DatePicker
 	static getYearFromFullDate(fullDate)
 	{
 		return fullDate.substring(6);
+	}
+
+	/*
+	* Get the current day
+	* @return String The current day
+	*/
+	static getDay()
+	{
+		return new Date().getDate();
+	}
+
+	/*
+	* Get the current month
+	* @return String The current month
+	*/
+	static getMonth()
+	{
+		var month = new Date().getMonth()+1;
+		return month < 10 ? String('0'+month) : month;
+	}
+
+	/*
+	* Get the currentyear
+	* @return String The current year
+	*/
+	static getYear()
+	{
+		return new Date().getFullYear();
 	}
 
 	/*

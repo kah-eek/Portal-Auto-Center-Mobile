@@ -12,6 +12,7 @@ class ServiceDAO
 			url: api['service'],
 			dataType:'json',
 			success:function(response){
+				// console.log(response);
 				// Success callback
 				callbackSuccess(response);
 			},
@@ -35,7 +36,7 @@ class ServiceDAO
 			url: `${api['service_details']}?partnerId=${partnerId}`,
 			dataType:'json',
 			success:function(response){
-				console.log(response);
+				// console.log(response);
 				// Success callback
 				callbackSuccess(response);
 			},
@@ -47,15 +48,15 @@ class ServiceDAO
 	}
 
 	/**
-	* Get all service providers existents into database
+	* Get all service providers existents into database by service name
 	* @param  callbackSuccess(data) Callback executed in success on get data 
 	* @param  [callbackFail(error)] Callback executed in fail on get data 
 	*/
-	getServiceProviders(callbackSuccess, callbackFail)
+	getServiceProviders(serviceName, callbackSuccess, callbackFail)
 	{
 		$.ajax({
 			type:"GET",
-			url: api['service_provider'],
+			url: `${api['service_provider']}?service=${serviceName}`,
 			dataType:'json',
 			success:function(response){
 				// console.log(response);
