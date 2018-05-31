@@ -35,7 +35,7 @@ class DatePicker
 	* @param formatType Fromat type. (user = dd/mm/yyyy)
 	* @return String Date formatted
 	*/
-	getOnFormat(formatType, fullDate)
+	static getOnFormat(formatType, fullDate)
 	{
 
 		if (formatType == 'user')
@@ -100,7 +100,10 @@ class DatePicker
 		}
 	}
 
-	// Get the current full date
+	/*
+	* Get the current full date
+	* @return String The current full date
+	*/
 	static getCurrentDate()
 	{	
 		var date = new Date();
@@ -108,7 +111,10 @@ class DatePicker
 		var month = date.getMonth()+1;
 	
 		// Format the month
-		if(month < 10) {month = String('0'+month)}
+		if(month < 10)
+		{
+			month = String('0'+month);
+		}
 	
 		var year = date.getFullYear();
 

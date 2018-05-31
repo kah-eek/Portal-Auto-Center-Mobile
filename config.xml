@@ -18,18 +18,18 @@
     <allow-intent href="geo:*" />
     <platform name="android">
         <allow-intent href="market:*" />
-        <icon src="res/icon/android/icon-36-ldpi.png" density="ldpi" />
-        <icon src="res/icon/android/icon-48-mdpi.png" density="mdpi" />
-        <icon src="res/icon/android/icon-72-hdpi.png" density="hdpi" />
-        <icon src="res/icon/android/icon-96-xhdpi.png" density="xhdpi" />
-        <icon src="res/icon/android/icon-96-xhdpi.png" density="xxhdpi" />
-        <icon src="res/icon/android/icon-96-xhdpi.png" density="xxxhdpi" />
+        <icon density="ldpi" src="res/icon/android/icon-36-ldpi.png" />
+        <icon density="mdpi" src="res/icon/android/icon-48-mdpi.png" />
+        <icon density="hdpi" src="res/icon/android/icon-72-hdpi.png" />
+        <icon density="xhdpi" src="res/icon/android/icon-96-xhdpi.png" />
+        <icon density="xxhdpi" src="res/icon/android/icon-96-xhdpi.png" />
+        <icon density="xxxhdpi" src="res/icon/android/icon-96-xhdpi.png" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
-    <plugin name="cordova-plugin-dialogs" spec="^2.0.1" />
     <plugin name="cordova-plugin-datepicker" spec="^0.9.3" />
+    <plugin name="cordova-plugin-dialogs" spec="^2.0.1" />
     <plugin name="cordova-plugin-geolocation" spec="^4.0.1" />
 </widget>

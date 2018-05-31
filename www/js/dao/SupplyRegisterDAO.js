@@ -26,6 +26,7 @@ class SupplyRegisterDAO
 				callbackSuccess(response);
 			},
 			error:function(a,error,c){
+				console.error(error);
 				// Fail callback
 				if(callbackFail != null) {callbackFail(error)};
 			}

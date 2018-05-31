@@ -19,8 +19,8 @@
   "cordova": {
     "plugins": {
       "cordova-plugin-whitelist": {},
-      "cordova-plugin-dialogs": {},
       "cordova-plugin-datepicker": {},
+      "cordova-plugin-dialogs": {},
       "cordova-plugin-geolocation": {}
     },
     "platforms": []

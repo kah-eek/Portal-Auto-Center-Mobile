@@ -87,9 +87,6 @@
     <script src="js/dao/SupplyRegisterDAO.js"></script>
 
     <script>    
-      // DatePicker
-      var dp = null;
-
       // Geolocation
       var geo = new Geolocation();
 
@@ -171,11 +168,11 @@
 
       // Show datepicker 
       $('#txtDataAbastecimento').click(function(){
-        dp = new DatePicker(
+        new DatePicker(
           function(date)
           {
             $('#txtDataAbastecimento').val(
-              dp.getOnFormat('user', String(date))
+              DatePicker.getOnFormat('user', String(date))
             );
           },
           function(error)
@@ -196,7 +193,7 @@
           $('#cbxVeiculo').find(':selected').val(), 
           $('#txtValorAbastecimento').val(),  
           geo,
-          dp.getOnFormat('mysql',$('#txtDataAbastecimento').val())
+          DatePicker.getOnFormat('mysql',$('#txtDataAbastecimento').val())
         );
 
         // console.log(supplyRegister);
@@ -207,7 +204,6 @@
           supplyRegister, 
           function(resp)
           {
-            // console.log(resp);
             toast(resp.mensagem,4000);
 
             // Redirect user to previous page
