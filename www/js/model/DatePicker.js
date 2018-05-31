@@ -99,4 +99,19 @@ class DatePicker
 			return year+'-'+month+'-'+day;
 		}
 	}
+
+	// Get the current full date
+	static getCurrentDate()
+	{	
+		var date = new Date();
+		var day = date.getDate();
+		var month = date.getMonth()+1;
+	
+		// Format the month
+		if(month < 10) {month = String('0'+month)}
+	
+		var year = date.getFullYear();
+
+		return `${day}/${month}/${year}`;
+	}
 }

@@ -69,6 +69,10 @@ class ShoppingCart
 		return JSON.parse(localStorage.getItem('shopping_cart'));
 	}
 
+	/**
+	* Get full amount existent in shopping cart to user to pay
+	* @return float Total amount to user to pay
+	*/
 	static getFullAmount()
 	{
 		var shoppingCart = ShoppingCart.getShoppingCart();
