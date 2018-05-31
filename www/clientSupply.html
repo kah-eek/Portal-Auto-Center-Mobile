@@ -104,7 +104,6 @@
           function(resp) // callback de sucesso
           {
             console.log(resp);
-
             for(var i =0; i < resp.fuelSupplies.length; i++)
             {
               // Fulldate
@@ -115,56 +114,152 @@
               var longitude = resp.fuelSupplies[i].longitude;
               var fullAddress = '';
 
+              var dataObj = {
+                'fullDate':fullDate,
+                'price':price,
+                'km':km,
+                'latitude':latitude,
+                'longitude':longitude,
+                'fullAddress':fullAddress
+              };
+
               new Address().getAddress(
                 new Geolocation(latitude, longitude), 
-                function(address) // callback sucesso
+                dataObj,
+                function(address, keepData) // callback sucesso
                 {
                   if(address.results.length != 0)
                   {
+                    // Keep internet status
+                    localStorage.setItem('internet',JSON.stringify('ok'));
+
+                    // Keep full address
                     fullAddress = address.results[i].formatted_address;
+
+                    $('.cards-container').append(
+                      `<!-- Card -->
+                      <div class="card" style="background-image: url(https://images.unsplash.com/photo-1477477384939-312ffc1177bf?ixlib=rb-0.3.5&s=46022403ea7df4784ed71eaf563e2acc&dpr=1&auto=format&fit=crop&w=1000&q=80&cs=tinysrgb);
+                        background-size: cover;
+                        background-attachment: scroll;">
+
+                        <!-- Circle container -->
+                        <div class="circle-container white-txt">
+                          <div class="timeline-circle">
+                            <span class="block fs-25">${DatePicker.getDayFromFullDate(keepData.fullDate)}</span>
+                            <span class="block fs-18">${DatePicker.getMonthFromFullDate(keepData.fullDate)}</span>
+                            <span class="block fs-12">${DatePicker.getYearFromFullDate(keepData.fullDate)}</span>
+                          </div>
+                        </div>
+
+                        <!-- Circle content -->
+                        <div class="circle-content white-txt">
+                          
+                          <!-- Service's price -->
+                          <div class="row">
+                            <span class="block">R$ ${keepData.price}</span>
+                          </div>
+
+                          <!-- Mileage -->
+                          <div class="row">
+                            <span class="block">KM ${keepData.km}</span>
+                          </div>
+                          
+                          <!-- Gas station location -->
+                          <div class="row">
+                            <span class="block ellipsis">${fullAddress}</span>
+                          </div>
+                        </div>
+                      </div>`
+                    );
+                  }
+                  else
+                  {
+                    $('.cards-container').append(
+                      `<!-- Card -->
+                      <div class="card" style="background-image: url(https://images.unsplash.com/photo-1477477384939-312ffc1177bf?ixlib=rb-0.3.5&s=46022403ea7df4784ed71eaf563e2acc&dpr=1&auto=format&fit=crop&w=1000&q=80&cs=tinysrgb);
+                        background-size: cover;
+                        background-attachment: scroll;">
+
+                        <!-- Circle container -->
+                        <div class="circle-container white-txt">
+                          <div class="timeline-circle">
+                            <span class="block fs-25">${DatePicker.getDayFromFullDate(keepData.fullDate)}</span>
+                            <span class="block fs-18">${DatePicker.getMonthFromFullDate(keepData.fullDate)}</span>
+                            <span class="block fs-12">${DatePicker.getYearFromFullDate(keepData.fullDate)}</span>
+                          </div>
+                        </div>
+
+                        <!-- Circle content -->
+                        <div class="circle-content white-txt">
+                          
+                          <!-- Service's price -->
+                          <div class="row">
+                            <span class="block">R$ ${keepData.price}</span>
+                          </div>
+
+                          <!-- Mileage -->
+                          <div class="row">
+                            <span class="block">KM ${keepData.km}</span>
+                          </div>
+                          
+                          <!-- Gas station location -->
+                          <div class="row">
+                            <span class="block ellipsis"></span>
+                          </div>
+                        </div>
+                      </div>`
+                    );
                   }
                 }, 
                 function() // callback de falha
                 {
-
+                  // Keep internet status
+                  localStorage.setItem('internet',JSON.stringify('fail'));
                 }
               );
 
-              $('.cards-container').append(
-                `<!-- Card -->
-                <div class="card" style="background-image: url(https://images.unsplash.com/photo-1477477384939-312ffc1177bf?ixlib=rb-0.3.5&s=46022403ea7df4784ed71eaf563e2acc&dpr=1&auto=format&fit=crop&w=1000&q=80&cs=tinysrgb);
-                  background-size: cover;
-                  background-attachment: scroll;">
+              // Warns if user is online
+              var internetStatus = JSON.parse(localStorage.getItem('internet'));
 
-                  <!-- Circle container -->
-                  <div class="circle-container white-txt">
-                    <div class="timeline-circle">
-                      <span class="block fs-25">${DatePicker.getDayFromFullDate(fullDate)}</span>
-                      <span class="block fs-18">${DatePicker.getMonthFromFullDate(fullDate)}</span>
-                      <span class="block fs-12">${DatePicker.getYearFromFullDate(fullDate)}</span>
-                    </div>
-                  </div>
+              if(internetStatus == 'fail')
+              {
+                $('.cards-container').append(
+                  `<!-- Card -->
+                  <div class="card" style="background-image: url(https://images.unsplash.com/photo-1477477384939-312ffc1177bf?ixlib=rb-0.3.5&s=46022403ea7df4784ed71eaf563e2acc&dpr=1&auto=format&fit=crop&w=1000&q=80&cs=tinysrgb);
+                    background-size: cover;
+                    background-attachment: scroll;">
 
-                  <!-- Circle content -->
-                  <div class="circle-content white-txt">
-                    
-                    <!-- Service's price -->
-                    <div class="row">
-                      <span class="block">R$ ${price}</span>
+                    <!-- Circle container -->
+                    <div class="circle-container white-txt">
+                      <div class="timeline-circle">
+                        <span class="block fs-25">${DatePicker.getDayFromFullDate(fullDate)}</span>
+                        <span class="block fs-18">${DatePicker.getMonthFromFullDate(fullDate)}</span>
+                        <span class="block fs-12">${DatePicker.getYearFromFullDate(fullDate)}</span>
+                      </div>
                     </div>
 
-                    <!-- Mileage -->
-                    <div class="row">
-                      <span class="block">KM ${km}</span>
+                    <!-- Circle content -->
+                    <div class="circle-content white-txt">
+                      
+                      <!-- Service's price -->
+                      <div class="row">
+                        <span class="block">R$ ${price}</span>
+                      </div>
+
+                      <!-- Mileage -->
+                      <div class="row">
+                        <span class="block">KM ${km}</span>
+                      </div>
+                      
+                      <!-- Gas station location -->
+                      <div class="row">
+                        <span class="block ellipsis"></span>
+                      </div>
                     </div>
-                    
-                    <!-- Gas station location -->
-                    <div class="row">
-                      <span class="block ellipsis">${fullAddress}</span>
-                    </div>
-                  </div>
-                </div>`
-              );
+                  </div>`
+                );
+              }
+
             }
           }, 
           function() // callback de falha

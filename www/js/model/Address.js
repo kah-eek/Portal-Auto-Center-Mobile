@@ -7,9 +7,9 @@ class Address
 	* @param  callbackSuccess(data) Callback executed in success on get data 
 	* @param  [callbackFail(error)] Callback executed in fail on get data 
 	*/
-	getAddress(geolocationObj, callbackSuccess, callbackFail)
+	getAddress(geolocationObj, dataObs, callbackSuccess, callbackFail)
 	{
-		new AddressDAO().getAddress(geolocationObj, callbackSuccess, callbackFail);
+		new AddressDAO().getAddress(geolocationObj, dataObs, callbackSuccess, callbackFail);
 	}
 
 }

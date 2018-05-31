@@ -7,7 +7,7 @@ class AddressDAO
 	* @param  callbackSuccess(data) Callback executed in success on get data 
 	* @param  [callbackFail(error)] Callback executed in fail on get data 
 	*/
-	getAddress(geolocationObj, callbackSuccess, callbackFail)
+	getAddress(geolocationObj, dataObs, callbackSuccess, callbackFail)
 	{
 		$.ajax({
 			type:"POST",
@@ -15,7 +15,7 @@ class AddressDAO
 			dataType:'json',
 			success:function(resp){
 				// Success callback
-				callbackSuccess(resp);
+				callbackSuccess(resp, dataObs);
 			},
 			error:function(a,error,c){
 				// Fail callback

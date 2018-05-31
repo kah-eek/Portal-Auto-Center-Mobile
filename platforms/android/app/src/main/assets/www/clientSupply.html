@@ -113,6 +113,7 @@
               var km = resp.fuelSupplies[i].quilometro_rodado;
               var latitude = resp.fuelSupplies[i].latitude;
               var longitude = resp.fuelSupplies[i].longitude;
+              var fullAddress = '';
 
               new Address().getAddress(
                 new Geolocation(latitude, longitude), 
@@ -120,10 +121,9 @@
                 {
                   if(address.results.length != 0)
                   {
-                    var fullAddress = address.results[i].formatted_address;
+                    fullAddress = address.results[i].formatted_address;
 
-                    // Show full address
-                    $('.full-address').text(fullAddress);
+                    localStorage.setItem('fullAddress',JSON.stringify(fullAddress));
                   }
                 }, 
                 function() // callback de falha
@@ -162,7 +162,7 @@
                     
                     <!-- Gas station location -->
                     <div class="row">
-                      <span class="block ellipsis full-address"></span>
+                      <span class="block ellipsis">${JSON.parse(localStorage.getItem('fullAddress'))}</span>
                     </div>
                   </div>
                 </div>`
