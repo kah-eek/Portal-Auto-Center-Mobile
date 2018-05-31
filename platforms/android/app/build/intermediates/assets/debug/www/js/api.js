@@ -10,6 +10,7 @@ var api = {
 	'product':`http://${host}/Portal-Auto-Center-API/api/v1/product/`,
 	'vehicle':`http://${host}/Portal-Auto-Center-API/api/v1/vehicle/`,
 	'fuel':`http://${host}/Portal-Auto-Center-API/api/v1/fuel/`,
+	'fuel_supply':`http://${host}/Portal-Auto-Center-API/api/v1/fuel/supply/`,
 	'supply_register':`http://${host}/Portal-Auto-Center-API/api/v1/supplyRegister/`,
 	'google_geocode':`https://maps.googleapis.com/maps/api/geocode/json?latlng=`
 };

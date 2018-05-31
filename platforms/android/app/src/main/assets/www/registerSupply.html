@@ -57,7 +57,7 @@
         <input id="txtDataAbastecimento" class="input-text" maxlength="10" type="text" placeholder="Data do abastecimento" required name="txtDataAbastecimento">
 
         <!-- Vehicle's mileage -->
-        <input class="input-text" maxlength="6" type="text" placeholder="Quilometragem do veículo" required name="txtQuilometragemVeiculo">
+        <input id="txtQuilometragemVeiculo" class="input-text" maxlength="6" type="text" placeholder="Quilometragem do veículo" required name="txtQuilometragemVeiculo">
 
       </div>
 
@@ -186,13 +186,12 @@
       $('#form-supply-data').submit(function(e){
         e.preventDefault();
 
-        console.log(DatePicker.getOnFormat('mysql',$('#txtDataAbastecimento').val()));
-
         // Supply instance 
         var supplyRegister = new SupplyRegister
         (
           $('#cbxCombustivel').find(':selected').val(), 
           $('#cbxVeiculo').find(':selected').val(), 
+          $('#txtQuilometragemVeiculo').val(), 
           $('#txtValorAbastecimento').val(),  
           geo,
           DatePicker.getOnFormat('mysql',$('#txtDataAbastecimento').val())
