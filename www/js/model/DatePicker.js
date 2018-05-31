@@ -100,6 +100,36 @@ class DatePicker
 		}
 	}
 
+	/**
+	* Get only the day from full date
+	* @param fullDate Full date to get the day
+	* @retrun Only the day from full date
+	*/
+	static getDayFromFullDate(fullDate)
+	{
+		return fullDate.substring(0,2);
+	}
+
+	/**
+	* Get only the month from full date
+	* @param fullDate Full date to get the day
+	* @retrun Only the month from full date
+	*/
+	static getMonthFromFullDate(fullDate)
+	{
+		return fullDate.substring(3,5);
+	}
+
+	/**
+	* Get only the year from full date
+	* @param fullDate Full date to get the day
+	* @retrun Only the year from full date
+	*/
+	static getYearFromFullDate(fullDate)
+	{
+		return fullDate.substring(6);
+	}
+
 	/*
 	* Get the current full date
 	* @return String The current full date

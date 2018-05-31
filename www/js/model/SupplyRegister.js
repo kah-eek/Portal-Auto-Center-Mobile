@@ -5,6 +5,7 @@ class SupplyRegister
 	(
 		idTipoCombustivel, 
 		idVeiculoCliente, 
+		quilometroRodado,
 		valorAbastecimento,  
 		geolocationObj,
 		logControleAbastecimento,
@@ -13,6 +14,7 @@ class SupplyRegister
 	{
 		this.idTipoCombustivel = idTipoCombustivel; 
 		this.idVeiculoCliente = idVeiculoCliente;
+		this.quilometroRodado = quilometroRodado;
 		this.valorAbastecimento = valorAbastecimento;
 		this.logControleAbastecimento = logControleAbastecimento;
 		this.latitude = geolocationObj.latitude;

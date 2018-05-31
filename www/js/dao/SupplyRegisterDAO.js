@@ -15,6 +15,7 @@ class SupplyRegisterDAO
 			data:{
 				idTipoCombustivel: supplyRegisterObj.idTipoCombustivel,
 				idVeiculoCliente: supplyRegisterObj.idVeiculoCliente,
+				quilometroRodado: supplyRegisterObj.quilometroRodado,
 				valorAbastecimento: supplyRegisterObj.valorAbastecimento,
 				latitude: supplyRegisterObj.latitude,
 				longitude: supplyRegisterObj.longitude,
