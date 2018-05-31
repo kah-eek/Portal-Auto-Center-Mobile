@@ -16,7 +16,7 @@
 /* ************************************************************** */
 
 /*Remove blue border on select element*/
-*{outline: none;}
+*:focus{outline: none;}
 /*___________________________________*/
 
 /* Hamburger Menu */

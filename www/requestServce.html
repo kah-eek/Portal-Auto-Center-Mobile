@@ -79,10 +79,7 @@
       <input id="txtHoraAgendamento" class="input-text" required type="text" placeholder="Hora a ser agendada" name="txtHoraAgendamento">
 
       <!-- Navigation bar (header) -->
-      <nav class="snackbar green-light uppercase">
-        <a href="#">
-          Solicitar
-        </a>
+      <input class="snackbar no-border green-light uppercase" type="submit" name="btnRequest" value="Solicitar">
       </nav>
       <!-- *********************** -->
 
@@ -97,7 +94,7 @@
     <script>
 
       // Show datepicker - hour 
-      $('#txtDataAgendamento').click(function(){
+      $('#txtDataAgendamento').focusin(function(){
         new DatePicker(
           function(resp)
           {
@@ -111,7 +108,7 @@
       });
 
       // Show datepicker - hour 
-      $('#txtHoraAgendamento').click(function(){
+      $('#txtHoraAgendamento').focusin(function(){
         new DatePicker(
           function(resp)
           {
