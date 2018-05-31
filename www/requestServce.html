@@ -96,9 +96,22 @@
 
     <script>
 
-       // Show datepicker 
+      // Show datepicker - hour 
+      $('#txtDataAgendamento').click(function(){
+        new DatePicker(
+          function(resp)
+          {
+            $('#txtDataAgendamento').val(DatePicker.getOnFormat('user', String(resp)));
+          },
+          function(error)
+          {
+            console.log(error);
+          }
+        );
+      });
+
+      // Show datepicker - hour 
       $('#txtHoraAgendamento').click(function(){
-        console.log('ok');
         new DatePicker(
           function(resp)
           {
