@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <title>Portal Auto Center</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/pac_framework.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/paymentData.css">
+    <script src="cordova.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/pac_framework.js"></script>
+  </head>
+  <body>
+    <div class="main-container">
+
+      <!-- Main contant -->
+      <div class="main">
+        <form name="frmGetNewOrder">
+
+          <!-- Return button -->
+          <a href="#">
+            <i class="material-icons return-button">arrow_downward</i>
+          </a>
+
+          <!-- Card's data container -->
+          <div class="card-data-conatiner">
+            
+            <h1>Pagamento</h1>
+
+            <div class="divisor"></div>
+
+            <!-- Card number -->
+            <label for="txtNumeroCartao" class="field-label">Número do Cartão</label>
+            <input id="txtNumeroCartao" type="text" required class="input-text android-input" name="txtNumeroCartao">
+            <!-- ________________________________________________________________________________________________>< -->
+
+            <!-- Card CVV -->
+            <label for="txtCvv" class="field-label">CVV</label>
+            <input id="txtCvv" type="text" required class="input-text android-input" name="txtCvv">
+            <!-- ________________________________________________________________________________________________>< -->
+
+            <!-- Card's expiration month and year -->
+            <label for="txtExpirateMY" class="field-label">Vencimento (mm/aa)</label>
+            <input id="txtExpirateMY" type="text" required class="input-text android-input" name="txtExpirateMY">
+            <!-- ________________________________________________________________________________________________>< -->
+
+            <!-- Card holder name -->
+            <label for="txtHolderName" class="field-label">Titular do cartão</label>
+            <input id="txtHolderName" type="text" required class="input-text android-input" name="txtHolderName">
+            <!-- ________________________________________________________________________________________________>< -->
+
+          </div>
+
+          <!-- Navigation bar (header) -->
+          <input class="snackbar no-border green-light uppercase" type="submit" value="Concluir Compra" name="btnGetNewOrder"></input>
+          <!-- *********************** -->
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
