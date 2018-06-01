@@ -1,7 +1,7 @@
 $(function(){
 
 	// Andorid input animation
-	$(document).on('click','.android-input',function(){
+	$(document).on('focusin','.android-input',function(){
 
 	  var id = $(this).attr('id');
 

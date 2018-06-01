@@ -1,4 +1,4 @@
-class ProductDAO
+class PaymentDAO
 {
 
   /**
@@ -10,12 +10,37 @@ class ProductDAO
   * @param callbackSuccess(data) Callback executed in success on get data 
   * @param [callbackFail(error)] Callback executed in fail on get data 
   */
-  makePayment($paymentObj, $customerObj, $billingObj, $orderPaymentObj, callbackSuccess, callbackFail)
+  makePayment(paymentObj, customerObj, billingObj, orderPaymentObj, callbackSuccess, callbackFail)
   {
 	$.ajax({
 		type:"POST",
 		url: api['payment'],
-		// dataType:'json',
+		data: {
+			amount:paymentObj.amount,
+			cardNumber:paymentObj.cardNumber,
+			cardCvv:paymentObj.cardCvv,
+			cardExpirationMonth:paymentObj.cardExpirationMonth,
+			cardExpirationYear:paymentObj.cardExpirationYear,
+			cardHolderName:paymentObj.cardHolderName,
+			paymentMethod:'credit_card',
+			name:customerObj.name,
+			cpf:customerObj.cpf,
+			phoneNumber:customerObj.phoneNumber,
+			email:customerObj.email,
+			country:'br',
+			street:billingObj.street,
+			street_number:billingObj.streetNumber,
+			state:billingObj.state,
+			city:billingObj.city,
+			neighborhood:billingObj.neighborhood,
+			zipcode:billingObj.zipcode,
+			id:orderPaymentObj.id,
+			title:orderPaymentObj.title,
+			unitPrice:orderPaymentObj.unitPrice,
+			tangible:orderPaymentObj.tangible,
+			quantity:orderPaymentObj.quantity
+		},
+		dataType:'json',
 		success:function(response){
 			// Success callback
 			callbackSuccess(response);

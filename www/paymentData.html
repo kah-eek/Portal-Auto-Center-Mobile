@@ -14,6 +14,10 @@
     <script src="js/pac_framework.js"></script>
   </head>
   <body>
+
+    <!-- Toast -->
+    <div class="toast"></div>
+
     <div class="main-container">
 
       <!-- Main contant -->
@@ -34,12 +38,12 @@
 
             <!-- Card number -->
             <label for="txtNumeroCartao" class="field-label">Número do Cartão</label>
-            <input id="txtNumeroCartao" type="text" required class="input-text android-input" name="txtNumeroCartao">
+            <input id="txtNumeroCartao" type="text" required maxlength="16" class="input-text android-input" name="txtNumeroCartao">
             <!-- ________________________________________________________________________________________________>< -->
 
             <!-- Card CVV -->
             <label for="txtCvv" class="field-label">CVV</label>
-            <input id="txtCvv" type="text" required class="input-text android-input" name="txtCvv">
+            <input id="txtCvv" type="number" required class="input-text android-input" maxlength="3" name="txtCvv">
             <!-- ________________________________________________________________________________________________>< -->
 
             <!-- Card's expiration month and year -->
@@ -49,7 +53,7 @@
 
             <!-- Card holder name -->
             <label for="txtHolderName" class="field-label">Titular do cartão</label>
-            <input id="txtHolderName" type="text" required class="input-text android-input" name="txtHolderName">
+            <input id="txtHolderName" type="text" maxlength="40" required class="input-text android-input" name="txtHolderName">
             <!-- ________________________________________________________________________________________________>< -->
 
           </div>
@@ -60,6 +64,17 @@
         </form>
       </div>
     </div>
+
+    <!-- Component -->
+    <script src="js/component.js"></script>
+    <!-- Models -->
+    <script src="js/model/Payment.js"></script>
+    <script src="js/model/Billing.js"></script>
+    <script src="js/model/Client.js"></script>
+    <script src="js/model/Customer.js"></script>
+    <script src="js/model/OrderPayment.js"></script>
+    <!-- DAOs -->
+    <script src="js/dao/PaymentDAO.js"></script>
 
     <script>
       
@@ -73,6 +88,80 @@
         {
           $('#txtExpirateMY').val($('#txtExpirateMY').val()+'/');
         }
+      });
+
+      $('form[name="frmGetNewOrder"]').submit(function(e){
+        e.preventDefault();
+
+        // var prd = getVariable('prd');
+        var cardNumber = $('#txtNumeroCartao').val();
+        var cardCvv = $('#txtCvv').val();
+        var cardExpirationMonth = $('#txtExpirateMY').val().substring(0,2);
+        var cardExpirationYear = $('#txtExpirateMY').val().substring(3);
+        var cardHolderName = $('#txtHolderName').val();
+
+        // if(prd == 'service')
+        // {
+
+        // }
+
+        var payment = new Payment(
+          10000,
+          cardNumber,
+          cardCvv,
+          cardExpirationMonth,
+          cardExpirationYear,
+          cardHolderName,
+          'credit_card'
+        );  
+
+        var client = new Client().getClientFromApp();
+
+        var billing = new Billing(
+          client.nome,
+          'br',
+          client.logradouro,
+          client.numero,
+          client.estado,
+          client.cidade,
+          client.bairro,
+          client.cep
+        );
+
+        var customer = new Customer(
+          client.nome,
+          client.cpf,
+          client.celular,
+          client.email
+        );
+
+        payment.makePayment(
+          payment, 
+          customer, 
+          billing, 
+          OrderPayment.getOrderPayment(), 
+          function(resp)
+          {
+            console.log(resp);
+            if (resp.status)
+            {
+              // Show a toast to user about the payment
+              toast(resp.mensagem,4000);
+            }
+            else 
+            {
+              $('.toast').css({marginRight:'-180px'});
+              toast(resp.error,4000);
+            }
+          }, 
+          function(error)
+          {
+            console.error(error);
+            toast('Falha na conexão do recurso !',4000);
+          }
+        );
+
+
       });
 
     </script>

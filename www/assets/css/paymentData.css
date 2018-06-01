@@ -2,6 +2,12 @@
 
 /*body{background-color: green;}*/
 
+/*Toast position*/
+.toast
+{
+	margin-right: -130px;
+}
+
 /* Snackbar */
 .snackbar
 {

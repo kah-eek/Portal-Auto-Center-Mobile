@@ -30,8 +30,8 @@ class Payment
   * @param callbackSuccess(data) Callback executed in success on get data 
   * @param [callbackFail(error)] Callback executed in fail on get data 
   */
-  makePayment($paymentObj, $customerObj, $billingObj, $orderPaymentObj, callbackSuccess, callbackFail)
+  makePayment(paymentObj, customerObj, billingObj, orderPaymentObj, callbackSuccess, callbackFail)
   {
-  	new PaymentDAO().makePayment($paymentObj, $customerObj, $billingObj, $orderPaymentObj, callbackSuccess, callbackFail);
+  	new PaymentDAO().makePayment(paymentObj, customerObj, billingObj, orderPaymentObj, callbackSuccess, callbackFail);
   }
 }
