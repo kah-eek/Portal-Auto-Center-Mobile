@@ -44,7 +44,7 @@
 
             <!-- Card's expiration month and year -->
             <label for="txtExpirateMY" class="field-label">Vencimento (mm/aa)</label>
-            <input id="txtExpirateMY" type="text" required class="input-text android-input" name="txtExpirateMY">
+            <input id="txtExpirateMY" type="text" required class="input-text android-input" maxlength="5" name="txtExpirateMY">
             <!-- ________________________________________________________________________________________________>< -->
 
             <!-- Card holder name -->
@@ -60,5 +60,21 @@
         </form>
       </div>
     </div>
+
+    <script>
+      
+      // Mask - expiretion
+      $('#txtExpirateMY').keydown(function(e){
+
+        var txt = $(this).val();
+        var key = e.keyCode;
+
+        if(txt.length == 2 && key != 8)
+        {
+          $('#txtExpirateMY').val($('#txtExpirateMY').val()+'/');
+        }
+      });
+
+    </script>
   </body>
 </html>
