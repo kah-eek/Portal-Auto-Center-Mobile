@@ -15,5 +15,6 @@ var api = {
 	'service_details':`http://${host}/Portal-Auto-Center-API/api/v1/service/details/`,
 	'service_provider':`http://${host}/Portal-Auto-Center-API/api/v1/service/provider/`,
 	'supply_register':`http://${host}/Portal-Auto-Center-API/api/v1/supplyRegister/`,
+	'payment':`http://${host}/Portal-Auto-Center-API/api/v1/payment/`,
 	'google_geocode':`https://maps.googleapis.com/maps/api/geocode/json?latlng=`
 };

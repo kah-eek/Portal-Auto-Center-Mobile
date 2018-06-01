@@ -198,6 +198,11 @@
         var hour = DatePicker.parseHour('mysql', $('#txtHoraAgendamento').val());
         var date = DatePicker.getOnFormat('mysql', $('#txtDataAgendamento').val());
         var log = `${date} ${hour}`;
+
+
+        setTimeout(function(){
+          location.assign('paymentData.html');
+        },2000);
         
           
       });
