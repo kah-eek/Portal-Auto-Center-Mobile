@@ -41,6 +41,8 @@ class ShoppingCart
 		shoppingCart = this.getShoppingCart();
 		var list = [];
 
+		console.log(shoppingCart);
+
 		if (shoppingCart.length > 0)
 		{
 			var oldProcustId;
