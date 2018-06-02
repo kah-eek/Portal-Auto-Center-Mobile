@@ -398,6 +398,7 @@
 
       });
 
+      // Send user to payment data page
       $('.snackbar').click(function(){
 
         // Create a order payment group
@@ -405,30 +406,10 @@
         var shoppingCart = ShoppingCart.getShoppingCart();
         var productList = Product.getProductList();
 
-
-        for (var i = 0; i <  shoppingCart.length; i++) 
+        for(var f = 0; f < productList.length; f++)
         {
-          var productIdFromSC = shoppingCart[i].order.productId;
-          var product = null;
 
-          for(var w = 0; w < productList.length; w++)
-          {
-            var productId = productList[w].product.idProduto;
-            var prdFromList = productList[w].product;
-
-            if (productIdFromSC == productId) 
-            {
-              product = new Product(
-                prdFromList.idProduto, 
-                null, 
-                null, 
-                null, 
-                null, 
-                prdFromList.nome, 
-                prdFromList.preco
-              );
-            }
-          }
+          var product = productList[f].product;
 
           // Add OrderPayment to order payment group
           OrderPayment.addOrderPaymentToGroup(
@@ -436,11 +417,47 @@
               product.idProduto,
               product.nome,
               product.preco,
-              1,
+              ShoppingCart.getProductsCount(product.idProduto),
               true
             )
           );
         }
+
+        // for (var i = 0; i <  shoppingCart.length; i++) 
+        // {
+        //   var productIdFromSC = shoppingCart[i].order.productId;
+        //   var product = null;
+
+        //   for(var w = 0; w < productList.length; w++)
+        //   {
+        //     var productId = productList[w].product.idProduto;
+        //     var prdFromList = productList[w].product;
+
+        //     if (productIdFromSC == productId) 
+        //     {
+        //       product = new Product(
+        //         prdFromList.idProduto, 
+        //         null, 
+        //         null, 
+        //         null, 
+        //         null, 
+        //         prdFromList.nome, 
+        //         prdFromList.preco
+        //       );
+        //     }
+        //   }
+
+        //   // Add OrderPayment to order payment group
+        //   OrderPayment.addOrderPaymentToGroup(
+        //     new OrderPayment(
+        //       product.idProduto,
+        //       product.nome,
+        //       product.preco,
+        //       1,
+        //       true
+        //     )
+        //   );
+        // }
 
 
 
@@ -453,10 +470,10 @@
         //   requestDate
         // );
 
-        // // Redirect user to payment page
-        // setTimeout(function(){
-        //   location.assign('paymentData.html?prd=service');
-        // },1000);
+        // Redirect user to payment page
+        setTimeout(function(){
+          location.assign('paymentData.html?prd=product');
+        },1000);
 
       });
 
