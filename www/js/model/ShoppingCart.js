@@ -77,8 +77,14 @@ class ShoppingCart
 				checked = 0;
 			}
 
-			returnList.push(needToAdd);
+			for(var j = 0; j < needToAdd.length; j++)
+			{
+				returnList.push(needToAdd[j]);
+			}
 
+			console.log(needToAdd);
+
+			
 			return returnList;
 		}
 

@@ -36,6 +36,7 @@ class ProductDAO
 			url: `${api['product']}?id=${productId}`,
 			dataType:'json',
 			success:function(response){
+				// console.log(response);
 				// Success callback
 				callbackSuccess(response.produtos[0]);
 			},
