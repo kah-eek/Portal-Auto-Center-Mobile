@@ -29,6 +29,8 @@
 
       <div class="all-products"></div>
 
+      <div class="loading"></div>
+
       <!-- Product's section -->
       <!-- <div class="product-section">
         <span class="block">Acessórios</span>
@@ -83,6 +85,11 @@
         $('.corrossel-premium').load('carrossel.html',function(){
             jssor_1_slider_init();
         });
+
+        // Remove the loading element in 2 seconds and a half 
+        setTimeout(function(){
+          $('.loading').css({display:'none'});
+        },2500);
 
         setInterval(function(){
 

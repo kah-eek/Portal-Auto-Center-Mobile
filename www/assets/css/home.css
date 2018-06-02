@@ -6,6 +6,13 @@ body
   background: linear-gradient(to left, #2A2E37 0%, #fff 100%);
 }
 
+/*Loading position*/
+.loading
+{
+  position: absolute;
+  top: 55%;
+}
+
 /*Blank space*/
 .blank-space
 {
