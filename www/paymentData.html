@@ -223,6 +223,40 @@
               }
             );
           }
+
+          // Get the orders existent on application
+          var orderGroup = Order.getOrderGroup();
+
+          for(var g = 0; g < orderGroup.length; g++)
+          {
+            // new Order().requestNewOrder(
+            //   orderGroup[g].order, 
+            //   function(resp) // callback de sucesso 
+            //   {
+            //     console.log(resp);
+            //     if (resp.status)
+            //     {
+            //       toast(resp.mensagem,4000);
+            //     }
+            //     else
+            //     {
+            //       toast(resp.error);
+            //     }
+            //   },
+            //   function(error) // callback de falha 
+            //   {
+            //     console.error(error);
+            //   }
+            // );
+
+            if ((orderGroup.length-1)+1 == orderGroup.length)
+            {
+              // Redirect user to home page
+              setTimeout(function(){
+                location.replace('home.html');
+              },4000);
+            }
+          }
         }
       });
 
