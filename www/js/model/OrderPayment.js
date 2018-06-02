@@ -20,11 +20,33 @@ class OrderPayment
 	}
 
 	/**
-	* Return the current OrderPayment existent on application
-	* @return OrderPayment The current OrderPayment existent on application
+	* Return the current OrderPaymentGroup existent on application
+	* @return Array OrderPayment objects existent on application
 	*/
 	static getOrderPayment()
 	{
 		return JSON.parse(localStorage.getItem('orderPayment'));
+	}
+
+	/**
+	* Add a new product to products list
+	* @param productObj Products that will insert into products list
+	*/
+	static addOrderPaymentToGroup(orderPaymentObj)
+	{
+		var orderPaymentGroup = JSON.parse(localStorage.getItem('orderPaymentGroup'));
+
+        orderPaymentGroup.push({'orderPayment':orderPaymentObj});
+
+        localStorage.setItem('orderPaymentGroup',JSON.stringify(orderPaymentGroup));
+	}
+
+	/**
+	* Create a products list in local storage
+	*/
+	static createOrderPaymentGroup()
+	{
+		// Create a list with Product objectes
+        localStorage.setItem('orderPaymentGroup',JSON.stringify([]));		
 	}
 }

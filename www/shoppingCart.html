@@ -249,6 +249,7 @@
     <!-- Models -->
     <script src="js/model/ShoppingCart.js"></script>
     <script src="js/model/Product.js"></script>
+    <script src="js/model/OrderPayment.js"></script>
     <!-- DAOs -->
     <script src="js/dao/ProductDAO.js"></script>
 
@@ -260,7 +261,11 @@
       // console.log(ShoppingCart.getProductsId());
 
       if(shoppingCart.length > 0)
-      {   
+      { 
+
+        // Create a list with Product objectes
+        new Product().createProductList();  
+
         // console.log(ShoppingCart.getProductsId());
         for(var i = 0; i < ShoppingCart.getProductsId().length; i++)
         {
@@ -271,7 +276,26 @@
             ShoppingCart.getProductsId()[i], // product's id 
             function(product)
             {
-              // console.log(product);
+
+              // Create a product object to insert it into products list
+              var tempProduct = new Product(
+                product.id_produto, 
+                null, 
+                product.id_parceiro, 
+                null, 
+                product.id_categoria_produto, 
+                product.nome, 
+                product.preco, 
+                product.conteudo_embalagem, 
+                product.garantia, 
+                product.descricao, 
+                product.observacao
+              )
+
+               // Add the product to products list
+              tempProduct.addProductToList(tempProduct);
+
+              console.log(product);
               $('#main').append
               (
                  `<!-- Item -->
@@ -371,6 +395,68 @@
         {
           location.reload();
         }
+
+      });
+
+      $('.snackbar').click(function(){
+
+        // Create a order payment group
+        OrderPayment.createOrderPaymentGroup();
+        var shoppingCart = ShoppingCart.getShoppingCart();
+        var productList = Product.getProductList();
+
+
+        for (var i = 0; i <  shoppingCart.length; i++) 
+        {
+          var productIdFromSC = shoppingCart[i].order.productId;
+          var product = null;
+
+          for(var w = 0; w < productList.length; w++)
+          {
+            var productId = productList[w].product.idProduto;
+            var prdFromList = productList[w].product;
+
+            if (productIdFromSC == productId) 
+            {
+              product = new Product(
+                prdFromList.idProduto, 
+                null, 
+                null, 
+                null, 
+                null, 
+                prdFromList.nome, 
+                prdFromList.preco
+              );
+            }
+          }
+
+          // Add OrderPayment to order payment group
+          OrderPayment.addOrderPaymentToGroup(
+            new OrderPayment(
+              product.idProduto,
+              product.nome,
+              product.preco,
+              1,
+              true
+            )
+          );
+        }
+
+
+
+        // // Create a Order instance to make the order request
+        // new Order(
+        //   serviceId, 
+        //   unitPrice, 
+        //   new Client().getClientFromApp().id_cliente, 
+        //   3,
+        //   requestDate
+        // );
+
+        // // Redirect user to payment page
+        // setTimeout(function(){
+        //   location.assign('paymentData.html?prd=service');
+        // },1000);
 
       });
 
