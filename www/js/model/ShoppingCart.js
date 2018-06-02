@@ -63,7 +63,7 @@ class ShoppingCart
 
 			}
 
-			console.log(returnList);
+			// console.log(returnList);
 
 			return returnList;
 		}
