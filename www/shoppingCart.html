@@ -250,6 +250,7 @@
     <script src="js/model/ShoppingCart.js"></script>
     <script src="js/model/Product.js"></script>
     <script src="js/model/OrderPayment.js"></script>
+    <script src="js/model/Payment.js"></script>
     <!-- DAOs -->
     <script src="js/dao/ProductDAO.js"></script>
 
@@ -295,7 +296,6 @@
                // Add the product to products list
               tempProduct.addProductToList(tempProduct);
 
-              console.log(product);
               $('#main').append
               (
                  `<!-- Item -->
@@ -416,7 +416,7 @@
             new OrderPayment(
               product.idProduto,
               product.nome,
-              product.preco,
+              new Payment().parsePrice(String(product.preco)),
               ShoppingCart.getProductsCount(product.idProduto),
               true
             )

@@ -29,6 +29,15 @@ class OrderPayment
 	}
 
 	/**
+	* Get the order payment group
+	* @return array OrderPayment Objects array on JSON format
+	*/
+	static getOrderPaymentGroup()
+	{
+		return JSON.parse(localStorage.getItem('orderPaymentGroup'));
+	}
+
+	/**
 	* Add a new product to products list
 	* @param productObj Products that will insert into products list
 	*/

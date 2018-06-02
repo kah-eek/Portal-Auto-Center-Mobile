@@ -96,17 +96,12 @@
       $('form[name="frmGetNewOrder"]').submit(function(e){
         e.preventDefault();
 
-        // var prd = getVariable('prd');
+        var prd = getVariable('prd');
         var cardNumber = $('#txtNumeroCartao').val();
         var cardCvv = $('#txtCvv').val();
         var cardExpirationMonth = $('#txtExpirateMY').val().substring(0,2);
         var cardExpirationYear = $('#txtExpirateMY').val().substring(3);
         var cardHolderName = $('#txtHolderName').val();
-
-        // if(prd == 'service')
-        // {
-
-        // }
 
         var payment = new Payment(
           10000,
@@ -138,61 +133,97 @@
           client.email
         );
 
-        payment.makePayment(
-          payment, 
-          customer, 
-          billing, 
-          OrderPayment.getOrderPayment(), 
-          function(resp)
-          {
-            console.log(resp);
-            if (resp.status)
+        // Verify if product is a service or just a simple product 
+        if(prd == 'service')
+        {
+          payment.makePayment(
+            payment, 
+            customer, 
+            billing, 
+            OrderPayment.getOrderPayment(), 
+            function(resp)
             {
-              // Show a toast to user about the payment
-              toast(resp.mensagem,4000);
-            }
-            else 
+              console.log(resp);
+              if (resp.status)
+              {
+                // Show a toast to user about the payment
+                toast(resp.mensagem,4000);
+              }
+              else 
+              {
+                $('.toast').css({marginRight:'-180px'});
+                toast(resp.error,4000);
+              }
+            }, 
+            function(error)
             {
-              $('.toast').css({marginRight:'-180px'});
-              toast(resp.error,4000);
+              console.error(error);
+              toast('Falha na conexão do recurso !',4000);
             }
-          }, 
-          function(error)
+          );
+
+          // Get the order existent on application
+          var order = Order.getOrder();
+
+          new Order().requestNewOrder(
+            order, 
+            function(resp) // callback de sucesso 
+            {
+              console.log(resp);
+              if (resp.status)
+              {
+                toast(resp.mensagem,4000);
+
+                // Redirect user to home page
+                setTimeout(function(){
+                  location.replace('home.html');
+                },4000);
+              }
+              else
+              {
+                toast(resp.error);
+              }
+            },
+            function(error) // callback de falha 
+            {
+              console.error(error);
+            }
+          );
+        }
+        else if(prd == 'product')
+        {
+          var orderPaymentGroup = OrderPayment.getOrderPaymentGroup();
+          
+          for(var i = 0; i < orderPaymentGroup.length; i++)
           {
-            console.error(error);
-            toast('Falha na conexão do recurso !',4000);
+              console.log(orderPaymentGroup[i].orderPayment);
+              payment.makePayment(
+              payment, 
+              customer, 
+              billing, 
+              orderPaymentGroup[i].orderPayment, 
+              function(resp)
+              {
+                console.log(resp);
+                if (resp.status)
+                {
+                  // Show a toast to user about the payment
+                  toast(resp.mensagem,4000);
+                }
+                else 
+                {
+                  $('.toast').css({marginRight:'-180px'});
+                  toast(resp.error,4000);
+                }
+              }, 
+              function(error)
+              {
+                console.error(error);
+                toast('Falha na conexão do recurso !',4000);
+              }
+            );
           }
-        );
-
-        // Get the order existent on application
-        var order = Order.getOrder();
-
-        new Order().requestNewOrder(
-          order, 
-          function(resp) // callback de sucesso 
-          {
-            console.log(resp);
-            if (resp.status)
-            {
-              toast(resp.mensagem,4000);
-
-              // Redirect user to home page
-              setTimeout(function(){
-                location.replace('home.html');
-              },4000);
-            }
-            else
-            {
-              toast(resp.error);
-            }
-          },
-          function(error) // callback de falha 
-          {
-            console.error(error);
-          }
-        );
-
-
+        }
       });
 
     </script>
