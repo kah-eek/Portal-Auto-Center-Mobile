@@ -73,8 +73,10 @@
     <script src="js/model/Client.js"></script>
     <script src="js/model/Customer.js"></script>
     <script src="js/model/OrderPayment.js"></script>
+    <script src="js/model/Order.js"></script>
     <!-- DAOs -->
     <script src="js/dao/PaymentDAO.js"></script>
+    <script src="js/dao/OrderDAO.js"></script>
 
     <script>
       
@@ -158,6 +160,34 @@
           {
             console.error(error);
             toast('Falha na conexão do recurso !',4000);
+          }
+        );
+
+        // Get the order existent on application
+        var order = Order.getOrder();
+
+        new Order().requestNewOrder(
+          order, 
+          function(resp) // callback de sucesso 
+          {
+            console.log(resp);
+            if (resp.status)
+            {
+              toast(resp.mensagem,4000);
+
+              // Redirect user to home page
+              setTimeout(function(){
+                location.replace('home.html');
+              },4000);
+            }
+            else
+            {
+              toast(resp.error);
+            }
+          },
+          function(error) // callback de falha 
+          {
+            console.error(error);
           }
         );
 

@@ -20,7 +20,7 @@ class ProductDAO
 				// Fail callback
 				if(callbackFail != null) {callbackFail(error)};
 			}
-		});;
+		});
 	}	
 
 	/**
@@ -43,7 +43,7 @@ class ProductDAO
 				// Fail callback
 				if(callbackFail != null) {callbackFail(error)};
 			}
-		});;
+		});
 	}	
 
 }

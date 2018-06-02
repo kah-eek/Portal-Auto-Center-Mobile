@@ -7,6 +7,7 @@ var host = '127.0.0.1';
 var api = {
 	'authentication':`http://${host}/Portal-Auto-Center-API/api/v1/user/`,
 	'state':`http://${host}/Portal-Auto-Center-API/api/v1/state/`,
+	'order':`http://${host}/Portal-Auto-Center-API/api/v1/order/`,
 	'product':`http://${host}/Portal-Auto-Center-API/api/v1/product/`,
 	'vehicle':`http://${host}/Portal-Auto-Center-API/api/v1/vehicle/`,
 	'fuel':`http://${host}/Portal-Auto-Center-API/api/v1/fuel/`,
