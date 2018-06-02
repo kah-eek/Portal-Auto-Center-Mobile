@@ -32,4 +32,14 @@ class Service
 		new ServiceDAO().getServiceProviders(callbackSuccess, callbackFail);
 	}
 
+	/**
+	* Get all accomplished service existents into database by client id
+	* @param callbackSuccess(data) Callback executed in success on get data 
+	* @param [callbackFail(error)] Callback executed in fail on get data 
+	*/
+	getAccomplishedServiceByClientId(clientId, callbackSuccess, callbackFail)
+	{
+		new ServiceDAO().getAccomplishedServiceByClientId(clientId, callbackSuccess, callbackFail);
+	}
+
 }
