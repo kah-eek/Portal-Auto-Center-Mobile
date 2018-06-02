@@ -317,7 +317,7 @@
                         </div>
 
                         <!-- Delete button container -->
-                        <div class="delete-container">
+                        <div data-id="${product.id_produto}" class="delete-container">
                           <i class="material-icons" title="Remover item">clear</i>
                         </div>
 
@@ -360,6 +360,20 @@
 
       },
       1000);
+
+      // Remove order from shopping cart when click on item
+      $(document).on('click','.delete-container',function(){
+
+        // Product's id
+        var productId = $(this).data('id');
+        
+        if(ShoppingCart.removeOrder(productId))
+        {
+          location.reload();
+        }
+
+      });
+
     </script>
 
   </body>

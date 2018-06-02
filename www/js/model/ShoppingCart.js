@@ -111,6 +111,40 @@ class ShoppingCart
 	}
 
 	/**
+	* Remove selected order from shopping cart 
+	* @param orderId Order id
+	* @return true Order removed form shopping cart
+	* @return false Fail in to attempt remove order form shopping cart
+	*/
+	static removeOrder(orderId)
+	{
+		var shoppingCart = ShoppingCart.getShoppingCart();
+		var newShoppingCart = [];
+
+		// console.log(orderId);
+		console.log(shoppingCart);
+
+		for(var j = 0; j < shoppingCart.length; j++)
+		{
+			if (shoppingCart[j].order.productId != orderId) 
+			{
+				newShoppingCart.push(shoppingCart[j]);
+			}
+		}
+
+		// Set in shopping cart the remaining orders
+		localStorage.setItem('shopping_cart', JSON.stringify(newShoppingCart));		
+
+		// Verify if shopping cart has changed
+		if(ShoppingCart.getShoppingCart().length != shoppingCart.length)
+		{
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
 	* Add a new order into shopping cart
 	* @param orderObj Order that will insert into shopping cart
 	*/
