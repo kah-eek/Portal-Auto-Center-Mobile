@@ -39,52 +39,32 @@ class ShoppingCart
 	static getProductsId()
 	{
 		shoppingCart = this.getShoppingCart();
-		var list = shoppingCart;
 		var returnList = [];
-		var needToAdd = [];
-		var add = true;
+		var productAmount = [];
 
 		if (shoppingCart.length > 0)
 		{
-			var checked = 0;
 
 			for(var i = 0; i < shoppingCart.length; i++)
-			{
-
-				for(var h = 0; h < list.length; h++)
-				{
-
-					// console.log(shoppingCart[h].order.productId+' == '+list[h].order.productId);
-
-					if (shoppingCart[i].order.productId == list[h].order.productId)
-					{
-						checked += 1;
-					}
-
-					if (checked > 1 && add == true)
-					{
-						needToAdd.push(shoppingCart[h].order.productId);
-						add = false;
-					}
-				}
-
-				add = true;
-
-				if(checked == 1)
-				{
-					returnList.push(shoppingCart[i].order.productId);
-				}
-				checked = 0;
+			{	
+				var productId = shoppingCart[i].order.productId;			
+				productAmount[productId] = 	ShoppingCart.getProductsCount(productId);			
 			}
 
-			for(var j = 0; j < needToAdd.length; j++)
+			for(var j = 0; j < shoppingCart.length; j++)
 			{
-				returnList.push(needToAdd[j]);
+				var id = shoppingCart[j].order.productId;
+
+				if (ShoppingCart.getProductsCount(id) == productAmount[id])
+				{
+					returnList.push(id);
+					productAmount[id] = -1;
+				}
+
 			}
 
-			console.log(needToAdd);
+			console.log(returnList);
 
-			
 			return returnList;
 		}
 
