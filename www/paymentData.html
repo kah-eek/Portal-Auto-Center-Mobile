@@ -229,25 +229,25 @@
 
           for(var g = 0; g < orderGroup.length; g++)
           {
-            // new Order().requestNewOrder(
-            //   orderGroup[g].order, 
-            //   function(resp) // callback de sucesso 
-            //   {
-            //     console.log(resp);
-            //     if (resp.status)
-            //     {
-            //       toast(resp.mensagem,4000);
-            //     }
-            //     else
-            //     {
-            //       toast(resp.error);
-            //     }
-            //   },
-            //   function(error) // callback de falha 
-            //   {
-            //     console.error(error);
-            //   }
-            // );
+            new Order().requestNewOrder(
+              orderGroup[g].order, 
+              function(resp) // callback de sucesso 
+              {
+                console.log(resp);
+                if (resp.status)
+                {
+                  toast(resp.mensagem,4000);
+                }
+                else
+                {
+                  toast(resp.error);
+                }
+              },
+              function(error) // callback de falha 
+              {
+                console.error(error);
+              }
+            );
 
             if ((orderGroup.length-1)+1 == orderGroup.length)
             {
