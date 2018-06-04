@@ -88,6 +88,9 @@
     <!-- Models -->
     <script src="js/model/Service.js"></script>
     <script src="js/model/DatePicker.js"></script>
+    <script src="js/model/OrderPayment.js"></script>
+    <script src="js/model/Order.js"></script>
+    <script src="js/model/Client.js"></script>
     <!-- DAOs -->
     <script src="js/dao/ServiceDAO.js"></script>
 
@@ -189,6 +192,43 @@
           {}
         );
       
+      });
+
+      // Send data to database
+      $('form[name="frmRequestService"]').submit(function(e){
+        e.preventDefault();
+
+        var hour = DatePicker.parseHour('mysql', $('#txtHoraAgendamento').val());
+        var date = DatePicker.getOnFormat('mysql', $('#txtDataAgendamento').val());
+        var requestDate = `${date} ${hour}`;
+        var serviceId = $('select[name="cbxServico"]').find(':selected').val();
+        var serviceName = $('select[name="cbxServico"]').find(':selected').text()
+        var unitPrice = $('#service-price').text().substring(3,$('#service-price').text().indexOf('.'))+$('#service-price').text().substring($('#service-price').text().indexOf('.')+1);
+
+        // Create a OrderPayment instance to send to payment
+        new OrderPayment(
+          serviceId,
+          serviceName,
+          unitPrice,
+          '1',
+          true
+        );
+
+        // Create a Order instance to make the order request
+        new Order(
+          serviceId, 
+          unitPrice, 
+          new Client().getClientFromApp().id_cliente, 
+          3,
+          requestDate
+        );
+
+        // Redirect user to payment page
+        setTimeout(function(){
+          location.assign('paymentData.html?prd=service');
+        },1000);
+        
+          
       });
 
     </script>

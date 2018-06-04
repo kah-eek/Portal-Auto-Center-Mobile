@@ -27,6 +27,10 @@
       <!-- Carrossel premium partner -->
       <div class="corrossel-premium"></div>
 
+      <div class="all-products"></div>
+
+      <div class="loading"></div>
+
       <!-- Product's section -->
       <!-- <div class="product-section">
         <span class="block">Acessórios</span>
@@ -82,61 +86,74 @@
             jssor_1_slider_init();
         });
 
-        // Get all products' minified information
-        Product.getProductsMinInfo(
-          function(products)
-          {
-            var oldCategory;
+        // Remove the loading element in 2 seconds and a half 
+        setTimeout(function(){
+          $('.loading').css({display:'none'});
+        },2500);
 
-            for(var i = 0; i < products.length; i++)
+        setInterval(function(){
+
+          // Get all products' minified information
+          Product.getProductsMinInfo(
+            function(products)
             {
+              console.log(products);
 
-              if (oldCategory != products[i].categoria) 
+              $('.all-products').html('');
+
+              var oldCategory;
+
+              for(var i = 0; i < products.length; i++)
               {
-                $('#main').append(
-                  `<div class="product-section">
-                    <span class="block">${products[i].categoria}</span>
-                   </div>`
+
+                if (oldCategory != products[i].categoria) 
+                {
+                  $('.all-products').append(
+                    `<div class="product-section">
+                      <span class="block">${products[i].categoria}</span>
+                     </div>`
+                  );
+
+                  oldCategory = products[i].categoria;
+
+                }
+
+                $('.all-products').append(
+                   `<!-- Product container -->
+                    <a class="block product-container" href="productDetails.html?id=${products[i].id_produto}">
+                      <!-- Product's image -->
+                      <div class="product-img" style="background-image: url(${picturePath['product']+getPictureName('produto',products[i].imagem)});"></div>
+
+                      <!-- Product's description -->
+                      <div class="product-desc">
+                        <!-- Name -->
+                        <span class="block product-label bold">${products[i].nome}</span>
+
+                        <!-- Price -->
+                        <span class="block product-label">
+                          Preço: <span class="green-light-txt bold">R$ ${products[i].preco}</span>
+                        </span>
+
+                        <!-- Manufacturer -->
+                        <span class="block product-label">
+                          Fabricante: ${products[i].fabricante}
+                        </span>
+                      </div>
+                    </a>
+                    <!-- _________________________________________________ -->
+
+                    <!-- Content divisor -->
+                    <div class="divisor"></div>`
                 );
-
-                oldCategory = products[i].categoria;
-
               }
-
-              $('#main').append(
-                 `<!-- Product container -->
-                  <a class="block product-container" href="productDetails.html?id=${products[i].id_produto}">
-                    <!-- Product's image -->
-                    <div class="product-img" style="background-image: url(${picturePath['product']+getPictureName('produto',products[i].imagem)});"></div>
-
-                    <!-- Product's description -->
-                    <div class="product-desc">
-                      <!-- Name -->
-                      <span class="block product-label bold">${products[i].nome}</span>
-
-                      <!-- Price -->
-                      <span class="block product-label">
-                        Preço: <span class="green-light-txt bold">R$ ${products[i].preco}</span>
-                      </span>
-
-                      <!-- Manufacturer -->
-                      <span class="block product-label">
-                        Fabricante: ${products[i].fabricante}
-                      </span>
-                    </div>
-                  </a>
-                  <!-- _________________________________________________ -->
-
-                  <!-- Content divisor -->
-                  <div class="divisor"></div>`
-              );
+            },
+            function(error)
+            {
+              console.error(error);
             }
-          },
-          function(error)
-          {
-            console.error(error);
-          }
-        );
+          );
+
+        },2500);
 
       });
     </script>

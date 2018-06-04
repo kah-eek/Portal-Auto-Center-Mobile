@@ -178,6 +178,9 @@
     <script src="js/model/Product.js"></script>
     <script src="js/model/Order.js"></script>
     <script src="js/model/ShoppingCart.js"></script>
+    <script src="js/model/Payment.js"></script>
+    <script src="js/model/Client.js"></script>
+    <script src="js/model/OrderPayment.js"></script>
 
     <script>
 
@@ -321,6 +324,36 @@
 
         }
       );
+
+      // Forward user to payment data page
+      $('.snackbar').click(function(){
+          
+        var price = new Payment().parsePrice($('#price').text());
+        var productName = $('#name').text();
+
+        // Create a OrderPayment instance to send to payment
+        new OrderPayment(
+          getVariable('id'),
+          productName,
+          price,
+          '1',
+          true
+        );
+
+        // Create a Order instance to make the order request
+        new Order(
+          getVariable('id'), 
+          price, 
+          new Client().getClientFromApp().id_cliente, 
+          3
+        );
+
+        // Redirect user to payment page
+        setTimeout(function(){
+          location.assign('paymentData.html?prd=service');
+        },1000);
+
+      });
 
     </script>
 

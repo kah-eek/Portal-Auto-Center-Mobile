@@ -45,126 +45,78 @@
       <!-- Cards' container -->
       <div class="cards-container">
         
-        <!-- Card -->
-        <div class="card">
-
-          <!-- Circle container -->
-          <div class="circle-container">
-            <div class="timeline-circle green-light"></div>
-          </div>
-
-          <!-- Circle content -->
-          <div class="circle-content">
-            
-            <!-- Service's name -->
-            <div class="row">
-              <span class="block">Higienização</span>
-            </div>
-
-            <!-- Service's price -->
-            <div class="row">
-              <span class="block">R$ 427,00</span>
-              <span class="block">17/05/2018</span>
-            </div>
-            
-            <!-- Partner that lended the service -->
-            <div class="row">
-              <span class="block">Fast & Run</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card -->
-        <div class="card">
-
-          <!-- Circle container -->
-          <div class="circle-container">
-            <div class="timeline-circle green-light"></div>
-          </div>
-
-          <!-- Circle content -->
-          <div class="circle-content">
-            
-            <!-- Service's name -->
-            <div class="row">
-              <span class="block">Revisão</span>
-            </div>
-
-            <!-- Service's price -->
-            <div class="row">
-              <span class="block">R$ 124,00</span>
-              <span class="block">03/05/2018</span>
-            </div>
-            
-            <!-- Partner that lended the service -->
-            <div class="row">
-              <span class="block">Fix Speed</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card -->
-        <div class="card">
-
-          <!-- Circle container -->
-          <div class="circle-container">
-            <div class="timeline-circle green-light"></div>
-          </div>
-
-          <!-- Circle content -->
-          <div class="circle-content">
-            
-            <!-- Service's name -->
-            <div class="row">
-              <span class="block">Balanceamento</span>
-            </div>
-
-            <!-- Service's price -->
-            <div class="row">
-              <span class="block">R$ 610,00</span>
-              <span class="block">14/05/2018</span>
-            </div>
-            
-            <!-- Partner that lended the service -->
-            <div class="row">
-              <span class="block">Turbo Car</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card -->
-        <div class="card">
-
-          <!-- Circle container -->
-          <div class="circle-container">
-            <div class="timeline-circle green-light"></div>
-          </div>
-
-          <!-- Circle content -->
-          <div class="circle-content">
-            
-            <!-- Service's name -->
-            <div class="row">
-              <span class="block">Troca de Pneus</span>
-            </div>
-
-            <!-- Service's price -->
-            <div class="row">
-              <span class="block">R$ 1482,00</span>
-              <span class="block">24/03/2018</span>
-            </div>
-            
-            <!-- Partner that lended the service -->
-            <div class="row">
-              <span class="block">Good Air</span>
-            </div>
-          </div>
-        </div>
+        <div class="loading"></div>
 
       </div>
 
     </div>
     <!-- *********************** -->
+
+    <!-- Models -->
+    <script src="js/model/Service.js"></script>
+    <script src="js/model/Client.js"></script>
+    <!-- DAOs -->
+    <script src="js/dao/ServiceDAO.js"></script>
+
+    <script>
+
+      setTimeout(function(){
+        $('.loading').css({display:'none'});
+      },2000);
+
+    setInterval(function(){
+
+      new Service().getAccomplishedServiceByClientId(
+      new Client().getClientFromApp().id_cliente,
+      function(resp) // callback de sucesso
+      {
+        console.log(resp);
+
+          $('.cards-container').html('');
+
+          for(var i = 0; i < resp.servicos.length; i++)
+          {
+            $('.cards-container').append(
+                `<!-- Card -->
+                <div class="card">
+
+                  <!-- Circle container -->
+                  <div class="circle-container">
+                    <div class="timeline-circle green-light"></div>
+                  </div>
+
+                  <!-- Circle content -->
+                  <div class="circle-content">
+                    
+                    <!-- Service's name -->
+                    <div class="row">
+                      <span class="block">${resp.servicos[i].servico}</span>
+                    </div>
+
+                    <!-- Service's price -->
+                    <div class="row">
+                      <span class="block">R$ ${resp.servicos[i].preco}</span>
+                      <span class="block">${resp.servicos[i].data_agendada}</span>
+                    </div>
+                    
+                    <!-- Partner that lended the service -->
+                    <div class="row">
+                      <span class="block">${resp.servicos[i].nome_fantasia}</span>
+                    </div>
+                  </div>
+                </div>`
+            );
+          }
+        },
+        function(error) // callback de falha
+        {
+          console.error(error);
+        }
+      );
+
+    },2000);
+
+    </script>
 
   </body>
 </html>
