@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <title>Portal Auto Center</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/pac_framework.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/clientProduct.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/utils.js"></script>
+  </head>
+  <body>
+    
+    <!-- Page's header -->
+    <nav class="nav-header white-txt">
+      <!-- Arrow back icon -->
+      <a id="menu" href="home.html">
+        <div class="menu">
+          <i class="material-icons block">arrow_back</i>
+        </div>
+      </a>
+      <!-- Header title -->
+      <div class="header-title">
+        <span class="block">Produtos</span>
+      </div>
+    </nav>
+    <!-- *********************** -->
+
+    <!-- Blank space -->
+    <div class="blank-space"></div>
+
+    <!-- Request new service button -->
+    <a class="request-service block" href="requestServce.html">
+      <i class="material-icons block">add</i>
+    </a>
+
+    <!-- Main content -->
+    <div class="main">
+
+      <!-- Timeline -->
+      <div class="timeline green-light"></div>
+
+      <!-- Cards' container -->
+      <div class="cards-container">
+        
+        <div class="loading"></div>
+
+      </div>
+
+    </div>
+    <!-- *********************** -->
+
+    <!-- Models -->
+    <script src="js/model/Product.js"></script>
+    <script src="js/model/Client.js"></script>
+    <!-- DAOs -->
+    <script src="js/dao/ProductDAO.js"></script>
+
+    <script>
+
+      setTimeout(function(){
+        $('.loading').css({display:'none'});
+      },2000);
+
+    setInterval(function(){
+
+      new Product().getProductsByClientId(
+      new Client().getClientFromApp().id_cliente,
+      function(resp) // callback de sucesso
+      {
+        console.log(resp);
+
+          $('.cards-container').html('');
+
+          for(var i = 0; i < resp.produtos.length; i++)
+          {
+            // Verify the product state (sent or not sent) 
+            if (resp.produtos[i].id_tipo_situacao_pedido == 7) // sent
+            {
+              var productStateColor = 'dark-red';
+            }
+            else if(resp.produtos[i].id_tipo_situacao_pedido == 9) // not sent
+            {
+              var productStateColor = 'green-light';
+            }
+
+            $('.cards-container').append(
+                `<!-- Card -->
+                <div class="card">
+
+                  <!-- Circle container -->
+                  <div class="circle-container">
+                    <div class="timeline-circle ${productStateColor}"></div>
+                  </div>
+
+                  <!-- Circle content -->
+                  <div class="circle-content">
+                    
+                    <!-- Service's name -->
+                    <div class="row">
+                      <span class="block">${resp.produtos[i].produto}</span>
+                    </div>
+
+                    <!-- Service's price -->
+                    <div class="row">
+                      <span class="block">R$ ${resp.produtos[i].preco}</span>
+                      <span class="block">${resp.produtos[i].log_situacao_pedido}</span>
+                    </div>
+                    
+                    <!-- Partner that lended the service -->
+                    <div class="row">
+                      <span class="block">${resp.produtos[i].nome_fantasia}</span>
+                    </div>
+                  </div>
+                </div>`
+            );
+          }
+        },
+        function(error) // callback de falha
+        {
+          console.error(error);
+        }
+      );
+
+    },2000);
+
+    </script>
+
+  </body>
+</html>

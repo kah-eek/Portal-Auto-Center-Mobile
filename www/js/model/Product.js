@@ -48,6 +48,17 @@ class Product
 	}
 
 	/**
+	* Get all sold products from database by client id
+	* @param  productId Product id
+	* @param  callbackSuccess(data) Callback executed in success on get data 
+	* @param  [callbackFail(error)] Callback executed in fail on get data 
+	*/
+	getProductsByClientId(clientId, callbackSuccess,callbackFail)
+	{
+		new ProductDAO().getProductsByClientId(clientId, callbackSuccess,callbackFail);
+	}
+
+	/**
 	* Add a new product to products list
 	* @param productObj Products that will insert into products list
 	*/
