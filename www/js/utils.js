@@ -1,7 +1,8 @@
 
 // Keep pictures' path
 var picturePath = {
-	'product':`http://${host}/Portal-Auto-Center/view/pictures/produto/`
+	'product':`http://${host}/Portal-Auto-Center/view/pictures/produto/`,
+	'profile':`http://${host}/Portal-Auto-Center/view/pictures/perfil/`
 };
 // *************************************************************><
 

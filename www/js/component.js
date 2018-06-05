@@ -10,7 +10,8 @@ $(function(){
         Set data into fields
       */
       // Profile picture
-      $('#profile-picture').attr('src',client.foto_perfil);
+      $('#profile-picture').attr('src',picturePath['profile']+getPictureName('perfil',client.foto_perfil));
+      // $('#profile-picture').attr('src',client.foto_perfil);
 
       // Name
       $('#name').text(client.nome);
