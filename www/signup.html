@@ -12,6 +12,9 @@
     <script src="js/utils.js"></script>
   </head>
   <body>
+
+    <!-- Toast message -->
+    <div class="toast"></div>
     
     <!-- Page's header -->
     <nav class="nav-header white-txt">
@@ -28,7 +31,7 @@
     </nav>
     <!-- *********************** -->
 
-    <form enctype="multipart/form-data">
+    <form id="frmSignUp" enctype="multipart/form-data">
       
       <!-- Main content -->
       <div class="main">
@@ -36,38 +39,45 @@
         <!-- User's profile picture -->
         <label class="block choose-pic" for="userPic">
           <i class="material-icons">
-            account_circle
+            add_a_photo
           </i>
         </label>  
         <input id="userPic" type="file" hidden name="btnUserPic">
 
         <!-- Client's username -->
-        <input class="input-text" type="text" required name="txtUsuario" placeholder="Usuário">
+        <label for="txtUsuario" class="field-label">Usuário</label>
+        <input id="txtUsuario" type="text" required class="input-text android-input" name="txtUsuario">
 
         <!-- Client's password -->
-        <input class="input-text" type="password" required name="txtSenha" placeholder="Senha">
+        <label for="txtSenha" class="field-label">Senha</label>
+        <input id="txtSenha" type="password" required class="input-text android-input" name="txtSenha">
 
         <!-- Content divisor -->
         <div class="divisor"></div>
         
         <!-- Client's name -->
-        <input class="input-text" type="text" required name="txtNome" placeholder="Nome completo">
+        <label for="txtNome" class="field-label">Nome completo</label>
+        <input id="txtNome" type="text" required class="input-text android-input" name="txtNome">
 
         <!-- Client's birthday -->
-        <input class="input-text" type="text" required name="txtDtNasc" placeholder="Data de nascimento">
+        <label for="txtDtNasc" class="field-label">Data de nascimento</label>
+        <input id="txtDtNasc" type="number" required maxlength="10" class="input-text android-input" name="txtDtNasc">
 
         <!-- Client's cpf -->
-        <input class="input-text" type="text" required name="txtCpf" placeholder="CPF">
+        <label for="txtCpf" class="field-label">CPF</label>
+        <input id="txtCpf" type="number" required maxlength="11" class="input-text android-input" name="txtCpf">
 
         <!-- Client's email -->
-        <input class="input-text" type="text" required name="txtEmail" placeholder="E-mail">
+        <label for="txtEmail" class="field-label">E-mail</label>
+        <input id="txtEmail" type="email" required maxlength="200" class="input-text android-input" name="txtEmail">
 
         <!-- Client's celular -->
-        <input class="input-text" type="text" required name="txtCcelular" placeholder="Celular">
+        <label for="txtCelular" class="field-label">Celular</label>
+        <input id="txtCelular" type="number" required maxlength="11" class="input-text android-input" name="txtCelular">
 
         <!-- Client's telefone -->
-        <input class="input-text" type="text" required name="txtTelefone" placeholder="Telefone">
-
+        <label for="txtTelefone" class="field-label">Telefone</label>
+        <input id="txtTelefone" type="number" required maxlength="11" class="input-text android-input" name="txtTelefone">
 
         <span class="sex-label">Sexo</span>
         <!-- Client's sex container -->
@@ -84,39 +94,90 @@
         <div class="divisor"></div>
 
         <!-- Client's zip code -->
-        <input class="input-text" type="text" required name="txtCep" placeholder="CEP">
+        <label for="txtCep" class="field-label">CEP</label>
+        <input id="txtCep" type="number" required maxlength="9" class="input-text android-input" name="txtCep">
 
         <!-- Client's State -->
         <select class="combo-box" required name="cbxEstado">
-          <option selected disabled value="">Estado</span></option>
-          <option value="1">São Paulo</option>
+          <option selected disabled value="">Estado</option>
         </select>
 
         <!-- Client's city -->
-        <input class="input-text" type="text" required name="txtCidade" placeholder="Cidade">
+        <label for="txtCidade" class="field-label">Cidade</label>
+        <input id="txtCidade" type="text" required maxlength="20" class="input-text android-input" name="txtCidade">
 
         <!-- Client's neighborhood -->
-        <input class="input-text" type="text" required name="txtBairro" placeholder="Bairro">
+        <label for="txtBairro" class="field-label">Bairro</label>
+        <input id="txtBairro" type="text" required maxlength="25" class="input-text android-input" name="txtBairro">
 
         <!-- Client's complement -->
-        <input class="input-text" type="text" required name="txtComplemento" placeholder="Complemento">
+        <label for="txtComplemento" class="field-label">Complemento</label>
+        <input id="txtComplemento" type="text" required maxlength="25" class="input-text android-input" name="txtComplemento">
 
         <!-- Client's address street -->
-        <input class="input-text" type="text" required name="txtLogradouro" placeholder="Logradouro">
+        <label for="txtLogradouro" class="field-label">Logradouro</label>
+        <input id="txtLogradouro" type="text" required maxlength="25" class="input-text android-input" name="txtLogradouro">
 
         <!-- Client's address number -->
-        <input class="input-text" type="text" required name="txtNumeroEnd" placeholder="Número">
+        <label for="txtNumeroEnd" class="field-label">Número</label>
+        <input id="txtNumeroEnd" type="number" required maxlength="10" class="input-text android-input" name="txtNumeroEnd">
 
       </div>
 
-      <!-- Navigation bar (header) -->
-      <nav class="snackbar green-light uppercase">
-        <a href="#">
-          Cadastrar
-        </a>
-      </nav>
+      <!-- Submit button -->
+      <input class="snackbar no-border green-light uppercase" type="submit" name="btnSignUp" value="Cadastrar-se">
       <!-- *********************** -->
 
     </form>
+
+    <!-- Component -->
+    <script src="js/pac_framework.js"></script>
+    <script src="js/component.js"></script>
+    <!-- Models -->
+    <script src="js/model/State.js"></script>
+    <!-- DAOs -->
+    <script src="js/dao/StateDAO.js"></script>
+    <script>
+      
+      // Set opacity on user's picture and hide it
+      $('#userPic').change(function(){
+        $('.choose-pic').css({
+          transition:'0.5s',
+          opacity:'0'
+        });
+        setTimeout(function(){
+          $('.choose-pic').css({
+            display:'none'
+          });
+
+          toast('Analisando imagem...',4000);
+        },500);
+      });
+
+      $('#frmSignUp').submit(function(e){
+        console.log('submit');
+        e.preventDefault();
+      });
+
+      // Load states
+      State.getStates(
+        function(resp)
+        {
+          console.log(resp);
+          for(var h = 0; h < resp.length; h++)
+          {
+            $('select[name="cbxEstado"]').append(
+              `<option value="${resp[h].id_estado}">${resp[h].estado}</option>`
+            );
+          }
+        },
+        function(error)
+        {
+          `<option value="1">São Paulo</option>`
+        } 
+      );
+
+
+    </script>
   </body>
 </html>
