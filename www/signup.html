@@ -175,7 +175,6 @@
       });
 
       $('#frmSignUp').submit(function(e){
-        console.log('submit');
         e.preventDefault();
 
         // console.log($('#txtUsuario').val());
@@ -221,6 +220,17 @@
           function(resp)
           {
             console.log(resp);
+            if(resp.status)
+            {
+              $('.toast').css({
+                marginRight:'-135px'
+              });
+              toast(resp.mensagem,4000);
+            }
+            else 
+            {
+              toast(resp.error,4000);
+            }
           }, 
           function(error)
           {
