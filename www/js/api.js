@@ -9,6 +9,7 @@ var host = '127.0.0.1';
 // var api = {
 // 	'authentication':`http://${host}/api/v1/user/`,
 // 	'state':`http://${host}/api/v1/state/`,
+//  'client_add':`http://${host}/api/v1/client/add/`,
 // 	'order':`http://${host}/api/v1/order/`,
 // 	'product':`http://${host}/api/v1/product/`,
 // 	'product_sale':`http://${host}/api/v1/product/sale/`,
@@ -26,6 +27,7 @@ var host = '127.0.0.1';
 var api = {
 	'authentication':`http://${host}/Portal-Auto-Center-API/api/v1/user/`,
 	'state':`http://${host}/Portal-Auto-Center-API/api/v1/state/`,
+	'client_add':`http://${host}/Portal-Auto-Center-API/api/v1/client/add/`,
 	'order':`http://${host}/Portal-Auto-Center-API/api/v1/order/`,
 	'product':`http://${host}/Portal-Auto-Center-API/api/v1/product/`,
 	'product_sale':`http://${host}/Portal-Auto-Center-API/api/v1/product/sale/`,

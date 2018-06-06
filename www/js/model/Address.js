@@ -1,5 +1,25 @@
 class Address
 {
+	// Default constructor
+	constructor
+	(
+		street,
+    	number,
+    	city,
+    	stateId,
+    	zipCode,
+    	neighborhood,
+    	complement
+	)
+	{
+		this.street = street,
+		this.number = number,
+		this.city = city,
+		this.stateId = stateId,
+		this.zipCode = zipCode,
+		this.neighborhood = neighborhood,
+		this.complement = complement
+	}
 
 	/**
 	* Verify if exists the client in database
