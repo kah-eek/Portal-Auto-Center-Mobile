@@ -7,11 +7,15 @@
     <link rel="stylesheet" type="text/css" href="assets/css/pac_framework.css">
     <link rel="stylesheet" type="text/css" href="assets/css/normalize.css">
     <link rel="stylesheet" type="text/css" href="assets/css/signup.css">
+    <script src="cordova.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src="js/api.js"></script>
     <script src="js/utils.js"></script>
   </head>
   <body>
+
+    <!-- Toast message -->
+    <div class="toast"></div>
     
     <!-- Page's header -->
     <nav class="nav-header white-txt">
@@ -28,7 +32,7 @@
     </nav>
     <!-- *********************** -->
 
-    <form enctype="multipart/form-data">
+    <form id="frmSignUp" enctype="multipart/form-data">
       
       <!-- Main content -->
       <div class="main">
@@ -36,47 +40,54 @@
         <!-- User's profile picture -->
         <label class="block choose-pic" for="userPic">
           <i class="material-icons">
-            account_circle
+            add_a_photo
           </i>
         </label>  
-        <input id="userPic" type="file" hidden name="btnUserPic">
+        <input id="userPic" type="file" hidden name="fotoPerfil">
 
         <!-- Client's username -->
-        <input class="input-text" type="text" required name="txtUsuario" placeholder="Usuário">
+        <label for="usuario" class="field-label">Usuário</label>
+        <input id="usuario" type="text" required class="input-text android-input" name="usuario">
 
         <!-- Client's password -->
-        <input class="input-text" type="password" required name="txtSenha" placeholder="Senha">
+        <label for="senha" class="field-label">Senha</label>
+        <input id="senha" type="password" required class="input-text android-input" name="senha">
 
         <!-- Content divisor -->
         <div class="divisor"></div>
         
         <!-- Client's name -->
-        <input class="input-text" type="text" required name="txtNome" placeholder="Nome completo">
+        <label for="nome" class="field-label">Nome completo</label>
+        <input id="nome" type="text" required class="input-text android-input" name="nome">
 
         <!-- Client's birthday -->
-        <input class="input-text" type="text" required name="txtDtNasc" placeholder="Data de nascimento">
+        <label for="dtNasc" class="field-label">Data de nascimento</label>
+        <input id="dtNasc" type="text" required maxlength="10" class="input-text android-input" name="dtNasc">
 
         <!-- Client's cpf -->
-        <input class="input-text" type="text" required name="txtCpf" placeholder="CPF">
+        <label for="cpf" class="field-label">CPF</label>
+        <input id="cpf" type="number" required maxlength="11" class="input-text android-input" name="cpf">
 
         <!-- Client's email -->
-        <input class="input-text" type="text" required name="txtEmail" placeholder="E-mail">
+        <label for="email" class="field-label">E-mail</label>
+        <input id="email" type="email" required maxlength="200" class="input-text android-input" name="email">
 
         <!-- Client's celular -->
-        <input class="input-text" type="text" required name="txtCcelular" placeholder="Celular">
+        <label for="celular" class="field-label">Celular</label>
+        <input id="celular" type="number" required maxlength="11" class="input-text android-input" name="celular">
 
         <!-- Client's telefone -->
-        <input class="input-text" type="text" required name="txtTelefone" placeholder="Telefone">
-
+        <label for="telefone" class="field-label">Telefone</label>
+        <input id="telefone" type="number" required maxlength="11" class="input-text android-input" name="telefone">
 
         <span class="sex-label">Sexo</span>
         <!-- Client's sex container -->
         <div class="client-sex-conatiner">
           <div class="sex-rbt">
-            <input class="input-radio" type="radio" name="rbtSexo" value="F">Feminino
+            <input class="input-radio" type="radio" name="sexo" value="F">Feminino
           </div>
           <div class="sex-rbt">
-            <input class="input-radio" type="radio" name="rbtSexo" value="M">Masculino        
+            <input class="input-radio" type="radio" name="sexo" value="M">Masculino        
           </div>
         </div>
 
@@ -84,39 +95,170 @@
         <div class="divisor"></div>
 
         <!-- Client's zip code -->
-        <input class="input-text" type="text" required name="txtCep" placeholder="CEP">
+        <label for="zipCode" class="field-label">CEP</label>
+        <input id="zipCode" type="number" required maxlength="9" class="input-text android-input" name="zipCode">
 
         <!-- Client's State -->
-        <select class="combo-box" required name="cbxEstado">
-          <option selected disabled value="">Estado</span></option>
-          <option value="1">São Paulo</option>
+        <select class="combo-box" required name="stateId">
+          <option selected disabled value="">Estado</option>
         </select>
 
         <!-- Client's city -->
-        <input class="input-text" type="text" required name="txtCidade" placeholder="Cidade">
+        <label for="city" class="field-label">Cidade</label>
+        <input id="city" type="text" required maxlength="20" class="input-text android-input" name="city">
 
         <!-- Client's neighborhood -->
-        <input class="input-text" type="text" required name="txtBairro" placeholder="Bairro">
+        <label for="neighborhood" class="field-label">Bairro</label>
+        <input id="neighborhood" type="text" required maxlength="25" class="input-text android-input" name="neighborhood">
 
         <!-- Client's complement -->
-        <input class="input-text" type="text" required name="txtComplemento" placeholder="Complemento">
+        <label for="complement" class="field-label">Complemento</label>
+        <input id="complement" type="text" maxlength="25" class="input-text android-input" name="complement">
 
         <!-- Client's address street -->
-        <input class="input-text" type="text" required name="txtLogradouro" placeholder="Logradouro">
+        <label for="street" class="field-label">Logradouro</label>
+        <input id="street" type="text" required maxlength="25" class="input-text android-input" name="street">
 
         <!-- Client's address number -->
-        <input class="input-text" type="text" required name="txtNumeroEnd" placeholder="Número">
+        <label for="number" class="field-label">Número</label>
+        <input id="number" type="number" required maxlength="10" class="input-text android-input" name="number">
 
       </div>
 
-      <!-- Navigation bar (header) -->
-      <nav class="snackbar green-light uppercase">
-        <a href="#">
-          Cadastrar
-        </a>
-      </nav>
+      <!-- Submit button -->
+      <input class="snackbar no-border green-light uppercase" type="submit" name="btnSignUp" value="Cadastrar-se">
       <!-- *********************** -->
 
     </form>
+
+    <!-- Component -->
+    <script src="js/pac_framework.js"></script>
+    <script src="js/component.js"></script>
+    <!-- Models -->
+    <script src="js/model/State.js"></script>
+    <script src="js/model/Address.js"></script>
+    <script src="js/model/User.js"></script>
+    <script src="js/model/Client.js"></script>
+    <script src="js/model/DatePicker.js"></script>
+    <!-- DAOs -->
+    <script src="js/dao/StateDAO.js"></script>
+    <script src="js/dao/ClientDAO.js"></script>
+    <script>
+      
+      // Set opacity on user's picture and hide it
+      $('#userPic').change(function(){
+        $('.choose-pic').css({
+          transition:'0.5s',
+          opacity:'0'
+        });
+        setTimeout(function(){
+          $('.choose-pic').css({
+            display:'none'
+          });
+
+          toast('Analisando imagem...',4000);
+        },500);
+      });
+
+      // Show date picker on gain focus on field
+      $('#dtNasc').focusin(function(){
+        new DatePicker(
+          function(resp)
+          {
+            $('#dtNasc').val(DatePicker.getOnFormat('user', String(resp)));
+          },
+          function(error)
+          {
+            console.log(error);
+          }
+        );
+      });
+
+      $('#frmSignUp').submit(function(e){
+        e.preventDefault();
+
+        // console.log($('#txtUsuario').val());
+        // console.log($('#txtSenha').val());
+        // console.log(new FormData($('#frmSignUp')[0]).get('fotoPerfil'));
+
+        // var address = new Address(
+        //   $('#txtLogradouro').val(),
+        //   $('#txtNumeroEnd').val(),
+        //   $('#txtCidade').val(),
+        //   $('select[name="cbxEstado"]').val(),
+        //   $('#txtCep').val(),
+        //   $('#txtBairro').val(),
+        //   $('#txtComplemento').val()
+        // );
+
+        // var user = new User(
+        //  $('#txtUsuario').val(),
+        //  $('#txtSenha').val(),
+        //  3 // client
+        // );
+
+        // var client = new Client(
+        //   null,
+        //   $('#txtNome').val(),
+        //   DatePicker.getOnFormat('mysql', $('#txtDtNasc').val()),
+        //   $('#txtCpf').val(),
+        //   $('#txtEmail').val(),
+        //   $('#txtCelular').val(),
+        //   null,
+        //   $('input[name="rbtSexo"]:checked', '#frmSignUp').val(),
+        //   $('#txtTelefone').val(),
+        //   null,
+        //   new FormData($('#frmSignUp')[0]).get('btnUserPic')
+        // );
+
+        var form = new FormData($('#frmSignUp')[0]); 
+        form.append('idNivelUsuario',3);
+        form.append('uploadPath','../../../../../view/pictures/perfil/');
+
+        new Client().signUp(
+          form, 
+          function(resp)
+          {
+            console.log(resp);
+            if(resp.status)
+            {
+              $('.toast').css({
+                marginRight:'-135px'
+              });
+              toast(resp.mensagem,4000);
+            }
+            else 
+            {
+              toast(resp.error,4000);
+            }
+          }, 
+          function(error)
+          {
+            console.error(error);
+          }
+        );
+
+      });
+
+      // Load states
+      State.getStates(
+        function(resp)
+        {
+          console.log(resp);
+          for(var h = 0; h < resp.length; h++)
+          {
+            $('select[name="stateId"]').append(
+              `<option value="${resp[h].id_estado}">${resp[h].estado}</option>`
+            );
+          }
+        },
+        function(error)
+        {
+          `<option value="1">São Paulo</option>`
+        } 
+      );
+
+
+    </script>
   </body>
 </html>

@@ -76,13 +76,23 @@
 
           for(var i = 0; i < resp.servicos.length; i++)
           {
+            // Verify the service state (confirmed or refused) 
+            if (resp.servicos[i].id_tipo_situacao_pedido == 6) // confirmed
+            {
+              var serviceStateColor = 'dark-red';
+            }
+            else if(resp.servicos[i].id_tipo_situacao_pedido == 1) // refused
+            {
+              var serviceStateColor = 'green-light';
+            }
+
             $('.cards-container').append(
                 `<!-- Card -->
                 <div class="card">
 
                   <!-- Circle container -->
                   <div class="circle-container">
-                    <div class="timeline-circle green-light"></div>
+                    <div class="timeline-circle ${serviceStateColor}"></div>
                   </div>
 
                   <!-- Circle content -->

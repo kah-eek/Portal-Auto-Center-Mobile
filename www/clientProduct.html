@@ -32,9 +32,9 @@
     <div class="blank-space"></div>
 
     <!-- Request new service button -->
-    <a class="request-service block" href="requestServce.html">
+    <!-- <a class="request-service block" href="requestServce.html">
       <i class="material-icons block">add</i>
-    </a>
+    </a> -->
 
     <!-- Main content -->
     <div class="main">
@@ -79,11 +79,11 @@
             // Verify the product state (sent or not sent) 
             if (resp.produtos[i].id_tipo_situacao_pedido == 7) // sent
             {
-              var productStateColor = 'dark-red';
+              var productStateColor = 'green-light';
             }
             else if(resp.produtos[i].id_tipo_situacao_pedido == 9) // not sent
             {
-              var productStateColor = 'green-light';
+              var productStateColor = 'dark-red';
             }
 
             $('.cards-container').append(
