@@ -85,11 +85,13 @@
           user, // Client's authentication data
           function(resp) // Success callback
           { 
+            console.log(resp);
             // Verify if client was returned
             if(resp.status)
             {
               // Keep client's data in local storage
               localStorage.setItem('client',JSON.stringify(resp.client));
+
 
               // Set auto login on application
               localStorage.setItem('autologin','true');

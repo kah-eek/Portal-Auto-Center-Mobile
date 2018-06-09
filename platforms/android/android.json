@@ -52,13 +52,13 @@
       "PACKAGE_NAME": "io.cordova.hellocordova"
     },
     "cordova-plugin-datepicker": {
-      "PACKAGE_NAME": "io.cordova.hellocordova"
+      "PACKAGE_NAME": "com.creativesoftwaresolutions"
     },
     "cordova-plugin-dialogs": {
-      "PACKAGE_NAME": "io.cordova.hellocordova"
+      "PACKAGE_NAME": "com.creativesoftwaresolutions"
     },
     "cordova-plugin-geolocation": {
-      "PACKAGE_NAME": "io.cordova.hellocordova"
+      "PACKAGE_NAME": "com.creativesoftwaresolutions"
     }
   },
   "dependent_plugins": {},

@@ -1,7 +1,7 @@
 // Host
-// var host = '192.168.0.100';
+var host = '192.168.0.108';
 // var host = '192.168.0.110';
-var host = 'www.autofast.com';
+// var host = 'www.autofast.com';
 // var host = '127.0.0.1';
 // var host = 'caiqueoliveira1.tempsite.ws';
 	

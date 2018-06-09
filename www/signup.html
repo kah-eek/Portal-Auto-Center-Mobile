@@ -66,7 +66,7 @@
 
         <!-- Client's cpf -->
         <label for="cpf" class="field-label">CPF</label>
-        <input id="cpf" type="number" required maxlength="11" class="input-text android-input" name="cpf">
+        <input id="cpf" type="text" required maxlength="11" class="input-text android-input" name="cpf">
 
         <!-- Client's email -->
         <label for="email" class="field-label">E-mail</label>
@@ -74,11 +74,11 @@
 
         <!-- Client's celular -->
         <label for="celular" class="field-label">Celular</label>
-        <input id="celular" type="number" required maxlength="11" class="input-text android-input" name="celular">
+        <input id="celular" type="text" required maxlength="11" class="input-text android-input" name="celular">
 
         <!-- Client's telefone -->
         <label for="telefone" class="field-label">Telefone</label>
-        <input id="telefone" type="number" required maxlength="11" class="input-text android-input" name="telefone">
+        <input id="telefone" type="text" required maxlength="11" class="input-text android-input" name="telefone">
 
         <span class="sex-label">Sexo</span>
         <!-- Client's sex container -->
@@ -96,7 +96,7 @@
 
         <!-- Client's zip code -->
         <label for="zipCode" class="field-label">CEP</label>
-        <input id="zipCode" type="number" required maxlength="9" class="input-text android-input" name="zipCode">
+        <input id="zipCode" type="text" required maxlength="9" class="input-text android-input" name="zipCode">
 
         <!-- Client's State -->
         <select class="combo-box" required name="stateId">
@@ -131,6 +131,8 @@
 
     </form>
 
+    <!-- Extras -->
+    <script src="js/jquery.mask.min.js"></script>
     <!-- Component -->
     <script src="js/pac_framework.js"></script>
     <script src="js/component.js"></script>
@@ -139,11 +141,19 @@
     <script src="js/model/Address.js"></script>
     <script src="js/model/User.js"></script>
     <script src="js/model/Client.js"></script>
-    <script src="js/model/DatePicker.js"></script>
+    <script src="js/model/DatePicker.js"></script>    
     <!-- DAOs -->
     <script src="js/dao/StateDAO.js"></script>
     <script src="js/dao/ClientDAO.js"></script>
     <script>
+
+      // Applying masks on fields
+      $('#cpf').mask('000.000.000-00');
+      $('#telefone').mask('(00)0000-0000');
+      $('#celular').mask('(00)00000-0000');
+      $('#zipCode').mask('00000-000');
+      $('#dtNasc').mask('00/00/0000');
+
       
       // Set opacity on user's picture and hide it
       $('#userPic').change(function(){
@@ -158,6 +168,9 @@
 
           toast('Analisando imagem...',4000);
         },500);
+        setTimeout(function(){
+          toast('Imagem ok!',4000);
+        },4000);
       });
 
       // Show date picker on gain focus on field
@@ -213,7 +226,11 @@
 
         var form = new FormData($('#frmSignUp')[0]); 
         form.append('idNivelUsuario',3);
-        form.append('uploadPath','../../../../../view/pictures/perfil/');
+        // External
+        form.append('uploadPath','../../../../view/pictures/perfil/');
+        // SENAI
+        // form.append('uploadPath','../../../../../view/pictures/perfil/');
+        form.append('dtNasc',DatePicker.getOnFormat('mysql',form.get('dtNasc')));
 
         new Client().signUp(
           form, 
