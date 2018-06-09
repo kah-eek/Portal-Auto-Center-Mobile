@@ -28,12 +28,12 @@ $(function(){
 
 	  // Open hamburger menu when click on it
       $('#menu').click(function(){
-        $('.hamburger-container').animate({left:'100%'},500);
+        $('.hamburger-container').animate({left:'100%'},400);
       });
 
       // Close hamburger menu when click on it (dark side)
       $('#close-menu').click(function(){
-        $('.hamburger-container').animate({left:'-100%'},800);
+        $('.hamburger-container').animate({left:'-100%'},400);
       });
 	});
   // *********************************************
