@@ -15,6 +15,11 @@
   </head>
   <body>
 
+    <!-- Loading container -->
+    <div class="loading-container">
+      <div class="loading"></div>
+    </div>
+
     <!-- Toast -->
     <div class="toast"></div>
 
@@ -101,6 +106,13 @@
       $('form[name="frmGetNewOrder"]').submit(function(e){
         e.preventDefault();
 
+        // Show the loading animation
+        $('.loading-container').css({
+          opacity:'0',          
+          display:'block',
+          animation:'fadein 1.5s linear 1'          
+        });
+
         var prd = getVariable('prd');
         var cardNumber = $('#txtNumeroCartao').val();
         var cardCvv = $('#txtCvv').val();
@@ -182,7 +194,23 @@
               {
                 setTimeout(function(){
                   toast(resp.mensagem,4000);
+                  
+                  setTimeout(function(){
+                      // Hide loading animation
+                      $('.loading-container').css({
+                        animation:'fadeout 2.5s linear 1'
+                      });
+
+                      // setTimeout(function(){
+                      //  $('.loading-container').css({
+                      //    display:'none '          
+                      //   });
+                      // },5000);
+
+                    },2000);
+
                 },4000);
+
 
                 // Redirect user to home page
                 setTimeout(function(){
@@ -249,6 +277,22 @@
                 {
                   setTimeout(function(){
                     toast(resp.mensagem,4000);
+                    
+                    setTimeout(function(){
+                      // Hide loading animation
+                      $('.loading-container').css({
+                        animation:'fadeout 2.5s linear 1'
+                      });
+
+                      // setTimeout(function(){
+                      //  $('.loading-container').css({
+                      //    display:'none '          
+                      //   });
+                      // },5000);
+
+                    },2000);
+
+
                   },4000);
                 }
                 else
