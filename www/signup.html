@@ -231,6 +231,14 @@
         // SENAI
         // form.append('uploadPath','../../../../../view/pictures/perfil/');
         form.append('dtNasc',DatePicker.getOnFormat('mysql',form.get('dtNasc')));
+        form.append('cpf',$('#cpf').unmask().val());
+        form.append('celular',$('#celular').unmask().val());
+        form.append('telefone',$('#telefone').unmask().val());
+
+        for(var pair of form.entries())
+        {
+          console.log(pair[0]+' '+pair[1]);
+        }
 
         new Client().signUp(
           form, 
