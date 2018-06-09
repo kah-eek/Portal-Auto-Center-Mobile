@@ -44,7 +44,7 @@ class ClientDAO
 			processData: false,
 			cache: false,
 			contentType:false,
-			// dataType:'json',
+			dataType:'json',
 			data: formDataObj,
 			// {
 

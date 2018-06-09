@@ -166,11 +166,11 @@
             display:'none'
           });
 
-          toast('Analisando imagem...',4000);
+          toast('Analisando imagem...',2000);
         },500);
         setTimeout(function(){
           toast('Imagem ok!',4000);
-        },4000);
+        },2200);
       });
 
       // Show date picker on gain focus on field
@@ -251,6 +251,11 @@
                 marginRight:'-135px'
               });
               toast(resp.mensagem,4000);
+
+              // Move client to login page
+              setTimeout(function(){
+                location.replace('index.html');
+              },3000);
             }
             else 
             {
