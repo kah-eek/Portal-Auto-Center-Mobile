@@ -90,10 +90,10 @@
                 dataObj,
                 function(address, keepData) // callback sucesso
                 {
+                  console.log(address);
                   if(address.results.length != 0)
                   {
-                    // Keep internet status
-                    localStorage.setItem('internet',JSON.stringify('ok'));
+                    // console.log('length != 0');
 
                     // Keep full address
                     fullAddress = address.results[i].formatted_address;
@@ -135,7 +135,9 @@
                     );
                   }
                   else
-                  {
+                  { 
+                    // console.log('else');
+
                     $('.cards-container').append(
                       `<!-- Card -->
                       <div class="card" style="background-image: url(assets/img/gasStation.jfif);
@@ -172,19 +174,24 @@
                       </div>`
                     );
                   }
+
+                  // Keep internet status
+                  localStorage.setItem('internet','ok');
+
                 }, 
                 function() // callback de falha
                 {
                   // Keep internet status
-                  localStorage.setItem('internet',JSON.stringify('fail'));
+                  localStorage.setItem('internet','fail');
                 }
               );
 
               // Warns if user is online
-              var internetStatus = JSON.parse(localStorage.getItem('internet'));
+              var internetStatus = localStorage.getItem('internet');
 
-              if(internetStatus == 'fail')
+              if(internetStatus === 'fail')
               {
+                // console.log('fail');
                 $('.cards-container').append(
                   `<!-- Card -->
                   <div class="card" style="background-image: url(assets/img/gasStation.jfif);
