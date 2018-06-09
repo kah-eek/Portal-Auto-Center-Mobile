@@ -204,7 +204,13 @@ class DatePicker
 		var date = new Date();
 		var day = date.getDate();
 		var month = date.getMonth()+1;
-	
+		
+		// Format the day
+		if(day < 10)
+		{
+			day = String('0'+day);
+		}
+
 		// Format the month
 		if(month < 10)
 		{
