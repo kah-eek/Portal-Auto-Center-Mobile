@@ -21,6 +21,13 @@
   /*background-color: gold;*/
 }
 
+/*Remove button background color and border - Entrar*/
+.button > input
+{
+  background-color: transparent;
+  border: 0;
+}
+
 .authentication-fields
 {
   display: flex;
