@@ -43,7 +43,7 @@
 
             <!-- Card CVV -->
             <label for="txtCvv" class="field-label">CVV</label>
-            <input id="txtCvv" type="number" required class="input-text android-input" maxlength="3" name="txtCvv">
+            <input id="txtCvv" type="text" required class="input-text android-input" maxlength="3" name="txtCvv">
             <!-- ________________________________________________________________________________________________>< -->
 
             <!-- Card's expiration month and year -->
@@ -65,6 +65,8 @@
       </div>
     </div>
 
+    <!-- Mask -->
+    <script src="js/jquery.mask.min.js"></script>
     <!-- Component -->
     <script src="js/component.js"></script>
     <!-- Models -->
@@ -79,6 +81,9 @@
     <script src="js/dao/OrderDAO.js"></script>
 
     <script>
+
+      // Set masks on fields
+      $('#txtNumeroCartao').mask('0000-0000-0000-0000');
       
       // Mask - expiretion
       $('#txtExpirateMY').keydown(function(e){
@@ -182,7 +187,7 @@
                 // Redirect user to home page
                 setTimeout(function(){
                   location.replace('home.html');
-                },4000);
+                },6000);
               }
               else
               {
@@ -262,7 +267,7 @@
               // Redirect user to home page
               setTimeout(function(){
                 location.replace('home.html');
-              },4000);
+              },6000);
             }
           }
         }
