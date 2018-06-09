@@ -21,29 +21,30 @@
     <!-- Toast component -->
     <div class="toast"></div>
 
-    <!-- Main content -->
-    <div class="main">
-      
-      <div class="authentication-fields">
-        <!-- Unername -->
-        <input id="txtUsername" class="input-text" type="text" name="txtUsername" placeholder="Usuário">
+    <form id="frmLogin">
+      <!-- Main content -->
+      <div class="main">
         
-        <!-- Password -->
-        <input id="txtPassword" class="input-text" type="password" name="txtPassword" placeholder="Senha">
-      </div>
+        <div class="authentication-fields">
+          <!-- Unername -->
+          <input id="txtUsername" class="input-text" type="text" required name="txtUsername" placeholder="Usuário">
+          
+          <!-- Password -->
+          <input id="txtPassword" class="input-text" type="password" required name="txtPassword" placeholder="Senha">
+        </div>
+        
+        <!-- Login button -->
+        <a class="button dark-blue" href="#">
+          <input class="white-txt uppercase" type="submit" name="btnLogin" value="Entrar">
+        </a>
+
+        <!-- Reset password field -->
+        <a class="reset-password" href="resetPassword.html">
+          <span>Esqueci minha senha</span>
+        </a>
       
-      <!-- Login button -->
-      <a class="button dark-blue white-txt uppercase" href="#">
-        <span id="login" class="block">Entrar</span>
-      </a>
-
-      <!-- Reset password field -->
-      <a class="reset-password" href="resetPassword.html">
-        <span>Esqueci minha senha</span>
-      </a>
-    
-    </div>
-
+      </div>      
+    </form>
 
     <!-- Navigation bar (header) -->
     <a class="snackbar green-light uppercase" href="signup.html">      
@@ -64,12 +65,8 @@
     <script>
       
       // Try to Login
-      $('#login').click(function(){
-
-        if($('#txtUsername').val() !== '' && $('#txtPassword').val() !== '')
-        {
-          console.log('null');
-        }
+      $('#frmLogin').submit(function(e){
+        e.preventDefault();
 
         var client = new Client();
 

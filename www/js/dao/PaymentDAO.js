@@ -40,10 +40,14 @@ class PaymentDAO
 			tangible:orderPaymentObj.tangible,
 			quantity:orderPaymentObj.quantity
 		},
-		dataType:'json',
+		// dataType:'json',
 		success:function(response){
+			// Full response
+			// console.log(response);
+			var jsonResponse = JSON.parse(response.substring(response.indexOf('END PUBLIC KEY-----')+24));
+			// console.log(jsonResponse);
 			// Success callback
-			callbackSuccess(response);
+			callbackSuccess(jsonResponse);
 		},
 		error:function(a,error,c){
 			// Fail callback

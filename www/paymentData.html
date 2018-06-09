@@ -141,18 +141,21 @@
             customer, 
             billing, 
             OrderPayment.getOrderPayment(), 
-            function(resp)
+            function(resp)  
             {
               console.log(resp);
-              if (resp.status)
+              console.log(resp.tid);
+              console.log(resp.status);
+              if (resp.status === "paid")
               {
+                $('.toast').css({marginRight:'-132.38px'});
                 // Show a toast to user about the payment
-                toast(resp.mensagem,4000);
+                toast('Compra efetuada com sucesso!',4000);
               }
               else 
               {
-                $('.toast').css({marginRight:'-180px'});
-                toast(resp.error,4000);
+                $('.toast').css({marginRight:'-100px'});
+                toast('Cartão inválido',4000);
               }
             }, 
             function(error)
@@ -172,7 +175,9 @@
               console.log(resp);
               if (resp.status)
               {
-                toast(resp.mensagem,4000);
+                setTimeout(function(){
+                  toast(resp.mensagem,4000);
+                },4000);
 
                 // Redirect user to home page
                 setTimeout(function(){
@@ -207,13 +212,14 @@
                 console.log(resp);
                 if (resp.status)
                 {
+                  $('.toast').css({marginRight:'-132.38px'});
                   // Show a toast to user about the payment
-                  toast(resp.mensagem,4000);
+                  toast('Compra efetuada com sucesso!',4000);
                 }
                 else 
                 {
-                  $('.toast').css({marginRight:'-180px'});
-                  toast(resp.error,4000);
+                  $('.toast').css({marginRight:'-100px'});
+                  toast('Cartão inválido',4000);
                 }
               }, 
               function(error)
@@ -236,7 +242,9 @@
                 console.log(resp);
                 if (resp.status)
                 {
-                  toast(resp.mensagem,4000);
+                  setTimeout(function(){
+                    toast(resp.mensagem,4000);
+                  },4000);
                 }
                 else
                 {
