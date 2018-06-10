@@ -29,11 +29,11 @@ class ServiceDAO
 	* @param  callbackSuccess(data) Callback executed in success on get data 
 	* @param  [callbackFail(error)] Callback executed in fail on get data 
 	*/
-	getServiceDetailsByPartner(partnerId, callbackSuccess, callbackFail)
+	getServiceDetailsByPartner(partnerId, serviceId, callbackSuccess, callbackFail)
 	{
 		$.ajax({
 			type:"GET",
-			url: `${api['service_details']}?partnerId=${partnerId}`,
+			url: `${api['service_details']}?partnerId=${partnerId}&serviceId=${serviceId}`,
 			dataType:'json',
 			success:function(response){
 				// console.log(response);

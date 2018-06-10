@@ -17,9 +17,9 @@ class Service
 	* @param  callbackSuccess(data) Callback executed in success on get data 
 	* @param  [callbackFail(error)] Callback executed in fail on get data 
 	*/
-	getServiceDetailsByPartner(partnerId, callbackSuccess, callbackFail)
+	getServiceDetailsByPartner(partnerId, serviceId, callbackSuccess, callbackFail)
 	{
-		new ServiceDAO().getServiceDetailsByPartner(partnerId, callbackSuccess, callbackFail);
+		new ServiceDAO().getServiceDetailsByPartner(partnerId, serviceId, callbackSuccess, callbackFail);
 	}
 
 	/**
