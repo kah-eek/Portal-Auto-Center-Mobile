@@ -28,7 +28,7 @@ class Payment
 	*/
 	parsePrice(fullPrice)
 	{
-		300.00
+		// 300.00
 		return fullPrice.substring(0,fullPrice.indexOf('.'))+fullPrice.substring(fullPrice.indexOf('.')+1);
 	}
 
